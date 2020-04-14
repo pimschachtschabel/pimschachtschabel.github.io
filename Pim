@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Pim Schachtschabel</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://unpkg.com/tachyons@4.10.0/css/tachyons.min.css"/>
+
+</head>
+<body class="sans-serif dark-gray bg-washed-green">
+
+  <div class="pa3 pa4-m pa6-l pb4-l">
+    <div class="fw7 lh-title mt5">
+      <p>
+        <div class="f-headline">hi! 👋 </div>
+        <div class="f1">My name is Pim.</div>
+      </p> 
+      <p class="f2 measure">
+        People call me an experience designer 🎩, Architect 🧢, Facilitator & Design Thinker 🎓 and community organiser ⛑. 
+      </p>
+      <p class="f3 measure">
+        I am fascinated by human behaviour and perception and often use storytelling and interaction design to explore. 
+      </p>
+      <p class="f4 measure">
+        I have a background in Architecture Engineering and Arts. I am fascinated by Christopher Alexander & how design of our environments influence our behaviour. 
+      </p>
+    </div>
+    <div class="measure">
+      <p>
+        I co-founded the #1 Escape-room & experience design company <a class="link dark-green hover-green underline fw6" target="_blank" href="http://www.sherlocked.nl/">Sherlocked</a> to explore the potential for immersive experiences and storytelling on the intersection of digital and physical. We help brands to tell stories in experiential ways.
+      </p>
+      <p>
+        I am co-founder and experience consultant of <a class="link dark-green hover-green underline fw6" target="_blank" href="https://www.wilddineren.nl/">Wilddineren</a>, celebrating the dinning ritual in art, design and performance.
+      </p>
+      <p>
+        During my studies, I started designing interiors for retail of which <a class="link dark-green hover-green underline fw6" target="_blank" href="http://www.uncoverlab.com">Uncoverlab is one I am very proud of.</a>
+      </p>
+      <p>
+        In 2018, I initiated an international community <a class="link dark-green hover-green underline fw6" target="_blank" href="http://stonesoup.live">stone soup</a> to bring together creaters and designers to prototype experiences.
+      </p>
+    </div>
+    <footer class="pt5 tl">
+      <a class="link dim dark-green dib br-100 h3 w4 mr3 " target="_blank" href="https://github.com/pimschachtschabel/" title="github">
+        <i class="v-mid" data-feather="github"></i> <span class="v-mid">github</span>
+      </a>
+      <a class="link dim dark-green dib br-100 h3 w4 mr3 " target="_blank" href="https://medium.com/@pimschachtschabel" title="medium">
+        <i class="v-mid" data-feather="edit"></i> <span class="v-mid">medium</span>
+      </a>
+      <a class="link dim dark-green dib br-100 h3 w4 mr3 " target="_blank" href="http://are.na/https://www.are.na/pim-schachtschabel/" title="are.na">
+        <i class="v-mid" data-feather="bookmark"></i> <span class="v-mid">are.na</span>
+      </a>
+    </footer>
+  </div>
+  
+  <script>
+    feather.replace()
+  </script>
+</body>
+</html>
