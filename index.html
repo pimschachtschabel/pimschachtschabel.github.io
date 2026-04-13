@@ -1,130 +1,898 @@
 <!DOCTYPE html>
+<html lang="en">
 <head>
-
-<link href="https://fonts.googleapis.com/css2?family=Gotu&display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Alegreya+Sans:wght@900&display=swap" rel="stylesheet">
-
-<style>
-
-body {
-  color: #0d2c40;
-  font-family: Gotu, sans-serif;
-  margin: 0px;
-}
-.header {
-  font-family: 'Alegreya Sans', sans-serif;
-  background-image: url('https://images.unsplash.com/photo-1533749047139-189de3cf06d3?');
-  background-size: cover;
-  margin:0px;
-  height:30vh;
-  color:;
-  position: relative;
-    }
-.content {
-  padding-left: 60px;
-  padding-right: 60px;
-  text-align: left;
-  }
-p {
-  font-style: italic;
-  font-weight: normal;
-  font-size: 14px;
-  
-}
-
-ul{font-style: italic;
-  font-weight: normal;
-  font-size: 14px;
-  padding-left: 80px;
-  
-}
-h1 {
-  text-transform: uppercase;
-  letter-spacing: 2px;
-  font-weight: bold;
-  font-size: 50px;
-  position: absolute;
-  bottom: 0px;
-  text-align: center;
-  width: 100%; 
-}
-h2 {
-  text-align: center;
-  font-weight: normal;
-  font-size: 30px;
-  margin: 20px 0px 0px 0px;
-}
-hr {
-  border: 0;
-  border-bottom: 1px solid #0d2c40;
-  margin: 0px 0px 30px 0px;
-}
-a {
-  text-decoration: none;
-  font-weight: bold;
-  color: #f15b31;
-  text-align: left;
-}
-.airtable-embed{
-   padding-left: 60px;
-  padding-right: 60px;
-}
-footer {
-  /*background-color: #a3d5d3;*/
-  text-align: center;
-  padding: 20px;
-}
-<link href="//cdn-images.mailchimp.com/embedcode/slim-10_7.css" rel="stylesheet" type="text/css">
-<style type="text/css">
-  #mc_embed_signup{background:#fff; clear:left; font:14px Helvetica,Arial,sans-serif; }
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pim Schachtschabel — Architect of Curiosity</title>
+  <meta name="description" content="Pim Schachtschabel is an experience designer, speaker, and author who helps people and organizations design the conditions where wonder becomes possible.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,500&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    ::selection { background: #D4956A; color: white; }
+    input:focus { border-color: #B86B3D !important; }
+    @media (max-width: 768px) { .desktop-nav { display: none !important; } .mobile-menu-btn { display: block !important; } }
+    @media (min-width: 769px) { .mobile-menu-btn { display: none !important; } }
+  </style>
 </head>
-
 <body>
-<div class="header">
-<h1>Hour 2 Empower</h1>
-  </div>
-<div class="content">
-<h2>The Concept</h2>
-  <hr>
-  <p>Explain the concept goes here</p>
-  </div>
+  <div id="root"></div>
 
-<div class="content">
-<h2>How to join</h2>
-  <hr>
-  <p>Steps to join go in here</p>
-  <ul>
-    <li>give one hour a week</li>
-    <li>Set-up your calendly in order for others to book your time</li>
-    <li>Be clear on the subject you can guide</li>
-    <li>Share it with your network</li>
-    <li>Let us know so we can show the community who is joining and what they are teaching</li>
-  </ul>
-  <a href="https://www.calendly.com/">
-         <img alt="Calendly" src="data:image/png;base64,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"
-        width=150" height="70"> </a>
-        <br />
-        <p>Calendly</p>
-  </div>
-  
-  <iframe class="airtable-embed" src="https://airtable.com/embed/shrlCDpCPFrXPtnBu?backgroundColor=green&layout=card&viewControls=on" frameborder="0" onmousewheel="" width="100%" height="420" style="background: transparent; border: 0px solid #ccc;"></iframe>
-<div class="content"> 
-<h2>Tools to use</h2>
-  <hr>
-  <p>Unordered list goes here</p>
-  <ul>
-    <li>one</li>
-    <li>two</li>
-    <li>three</li>
-  </ul>
-  </div>
+  <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+  <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+  <script crossorigin src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
 
-<footer>
-<a href="https://www.facebook.com/">Facebook</a> |
-<a href="https://twitter.com/">Twitter</a> |
-<a href="http://instagram.com/">Instagram</a>
-  <p>Made with &hearts; at Berkeley California</p>
-  </footer>
+  <script type="text/babel" data-type="module">
+    const { useState, useEffect, useRef } = React;
 
+    const COLORS = {
+      bg: "#F8F4EF",
+      bgAlt: "#EDE7DF",
+      bgDark: "#334A40",
+      bgDarkAlt: "#3F5A4E",
+      text: "#2D4038",
+      textLight: "#64806F",
+      accent: "#B86B3D",
+      accentLight: "#D4956A",
+      cream: "#F8F4EF",
+      white: "#FFFFFF",
+      border: "#D9D0C5",
+    };
+
+    const IMG_PORTRAIT = "images/portrait.jpg";
+    const IMG_TINTYPE = "images/tintype.jpg";
+    const IMG_EXPO = "images/expo.jpg";
+    const IMG_SHERLOCKED = "images/sherlocked.jpg";
+    const IMG_WILDDINING = "images/wilddining.jpg";
+    const IMG_SPEAKING_DDW = "images/speaking_ddw.jpg";
+    const IMG_SPEAKING_ITW = "images/speaking_itw.jpg";
+    const IMG_PANEL_ITW = "images/panel_itw.jpg";
+
+    function useScrollReveal() {
+      const ref = useRef(null);
+      const [visible, setVisible] = useState(false);
+      useEffect(() => {
+        const el = ref.current;
+        if (!el) return;
+        const obs = new IntersectionObserver(
+          ([e]) => { if (e.isIntersecting) { setVisible(true); obs.unobserve(el); } },
+          { threshold: 0.12 }
+        );
+        obs.observe(el);
+        return () => obs.disconnect();
+      }, []);
+      return [ref, visible];
+    }
+
+    function Reveal({ children, delay = 0, className = "" }) {
+      const [ref, visible] = useScrollReveal();
+      return (
+        <div ref={ref} className={className} style={{
+          opacity: visible ? 1 : 0,
+          transform: visible ? "translateY(0)" : "translateY(24px)",
+          transition: `opacity 0.7s ease ${delay}s, transform 0.7s ease ${delay}s`,
+        }}>{children}</div>
+      );
+    }
+
+    function CTAButton({ children, onClick, variant = "primary" }) {
+      const [hov, setHov] = useState(false);
+      const isPrimary = variant === "primary";
+      return (
+        <button onClick={onClick} onMouseOver={() => setHov(true)} onMouseOut={() => setHov(false)}
+          style={{
+            background: isPrimary ? (hov ? COLORS.accentLight : COLORS.accent) : "transparent",
+            color: isPrimary ? COLORS.white : (hov ? COLORS.accent : COLORS.text),
+            border: isPrimary ? "none" : `1.5px solid ${hov ? COLORS.accent : COLORS.text}`,
+            padding: "14px 32px", fontFamily: "'DM Sans', sans-serif",
+            fontSize: 13, fontWeight: 500, letterSpacing: "0.08em",
+            textTransform: "uppercase", cursor: "pointer", transition: "all 0.3s",
+          }}>{children}</button>
+      );
+    }
+
+    function Nav({ page, setPage }) {
+      const [menuOpen, setMenuOpen] = useState(false);
+      const [scrolled, setScrolled] = useState(false);
+      useEffect(() => {
+        const onScroll = () => setScrolled(window.scrollY > 60);
+        window.addEventListener("scroll", onScroll);
+        return () => window.removeEventListener("scroll", onScroll);
+      }, []);
+      const items = [
+        { id: "home", label: "Home" },
+        { id: "about", label: "About" },
+        { id: "speaking", label: "Speaking" },
+        { id: "book", label: "Book" },
+      ];
+      const go = (id) => { setPage(id); setMenuOpen(false); window.scrollTo(0,0); };
+      return (
+        <nav style={{
+          position: "fixed", top: 0, left: 0, right: 0, zIndex: 100,
+          background: scrolled ? "rgba(248,244,239,0.95)" : "transparent",
+          backdropFilter: scrolled ? "blur(10px)" : "none",
+          borderBottom: scrolled ? `1px solid ${COLORS.border}` : "1px solid transparent",
+          transition: "all 0.4s ease",
+        }}>
+          <div style={{
+            maxWidth: 1200, margin: "0 auto", padding: "16px 32px",
+            display: "flex", justifyContent: "space-between", alignItems: "center",
+          }}>
+            <button onClick={() => go("home")} style={{
+              background: "none", border: "none", cursor: "pointer", padding: 0,
+              fontFamily: "'Cormorant Garamond', serif", fontSize: 18, fontWeight: 600,
+              color: COLORS.text, letterSpacing: "0.02em",
+            }}>Pim Schachtschabel</button>
+            <div style={{ display: "flex", gap: 32, alignItems: "center" }} className="desktop-nav">
+              {items.filter(i => i.id !== "home").map(item => (
+                <button key={item.id} onClick={() => go(item.id)} style={{
+                  background: "none", border: "none", cursor: "pointer",
+                  fontFamily: "'DM Sans', sans-serif", fontSize: 14, fontWeight: 400,
+                  color: page === item.id ? COLORS.accent : COLORS.textLight,
+                  letterSpacing: "0.06em", textTransform: "uppercase",
+                  borderBottom: page === item.id ? `2px solid ${COLORS.accent}` : "2px solid transparent",
+                  paddingBottom: 4, transition: "all 0.3s",
+                }}>{item.label}</button>
+              ))}
+              <button onClick={() => go("speaking")} style={{
+                background: COLORS.accent, color: COLORS.white, border: "none",
+                padding: "10px 24px", fontFamily: "'DM Sans', sans-serif",
+                fontSize: 13, fontWeight: 500, letterSpacing: "0.06em",
+                textTransform: "uppercase", cursor: "pointer", transition: "background 0.3s",
+              }}
+                onMouseOver={e => e.target.style.background = COLORS.accentLight}
+                onMouseOut={e => e.target.style.background = COLORS.accent}
+              >Book Pim</button>
+            </div>
+            <button className="mobile-menu-btn" onClick={() => setMenuOpen(!menuOpen)} style={{
+              display: "none", background: "none", border: "none", cursor: "pointer", padding: 8,
+            }}>
+              <div style={{ width: 24, height: 2, background: COLORS.text, marginBottom: 6, transition: "all 0.3s", transform: menuOpen ? "rotate(45deg) translate(5px, 5px)" : "none" }} />
+              <div style={{ width: 24, height: 2, background: COLORS.text, marginBottom: 6, opacity: menuOpen ? 0 : 1, transition: "all 0.3s" }} />
+              <div style={{ width: 24, height: 2, background: COLORS.text, transition: "all 0.3s", transform: menuOpen ? "rotate(-45deg) translate(5px, -5px)" : "none" }} />
+            </button>
+          </div>
+          {menuOpen && (
+            <div style={{ background: COLORS.bg, padding: "16px 32px 32px", borderBottom: `1px solid ${COLORS.border}` }}>
+              {items.map(item => (
+                <button key={item.id} onClick={() => go(item.id)} style={{
+                  display: "block", width: "100%", textAlign: "left",
+                  background: "none", border: "none", cursor: "pointer",
+                  fontFamily: "'DM Sans', sans-serif", fontSize: 16,
+                  color: page === item.id ? COLORS.accent : COLORS.text,
+                  padding: "12px 0", borderBottom: `1px solid ${COLORS.border}`,
+                }}>{item.label}</button>
+              ))}
+            </div>
+          )}
+        </nav>
+      );
+    }
+
+    // ============ HOMEPAGE ============
+    function HomePage({ setPage }) {
+      return (
+        <div>
+          {/* Hero with portrait */}
+          <section style={{
+            minHeight: "100vh", display: "flex", alignItems: "center",
+            padding: "120px 32px 80px", maxWidth: 1100, margin: "0 auto",
+          }}>
+            <div style={{ display: "flex", gap: 64, alignItems: "center", flexWrap: "wrap", width: "100%" }}>
+              <div style={{ flex: "1 1 400px" }}>
+                <Reveal>
+                  <p style={{
+                    fontFamily: "'DM Sans', sans-serif", fontSize: 13, fontWeight: 500,
+                    letterSpacing: "0.12em", textTransform: "uppercase", color: COLORS.accent,
+                    marginBottom: 24,
+                  }}>Architect of Curiosity</p>
+                </Reveal>
+                <Reveal delay={0.15}>
+                  <h1 style={{
+                    fontFamily: "'Cormorant Garamond', serif", fontSize: "clamp(32px, 5vw, 56px)",
+                    fontWeight: 300, lineHeight: 1.15, color: COLORS.text,
+                    marginBottom: 32, fontStyle: "italic",
+                  }}>What if curiosity isn't something you find — but something you build?</h1>
+                </Reveal>
+                <Reveal delay={0.3}>
+                  <p style={{
+                    fontFamily: "'DM Sans', sans-serif", fontSize: 17, lineHeight: 1.7,
+                    color: COLORS.textLight, maxWidth: 520, marginBottom: 40,
+                  }}>I'm Pim Schachtschabel — an experience designer, speaker, and author who helps people and organizations design the conditions where wonder becomes possible.</p>
+                </Reveal>
+                <Reveal delay={0.45}>
+                  <div style={{ display: "flex", gap: 16, flexWrap: "wrap" }}>
+                    <CTAButton onClick={() => { setPage("speaking"); window.scrollTo(0,0); }}>Book Pim to Speak</CTAButton>
+                    <CTAButton variant="secondary" onClick={() => { setPage("book"); window.scrollTo(0,0); }}>Explore the Book</CTAButton>
+                  </div>
+                </Reveal>
+              </div>
+              <Reveal delay={0.2}>
+                <div style={{ flex: "0 0 auto" }}>
+                  <img src={IMG_PORTRAIT} alt="Pim Schachtschabel" style={{
+                    width: "clamp(260px, 30vw, 360px)", height: "clamp(260px, 30vw, 360px)",
+                    objectFit: "cover", filter: "contrast(1.02) saturate(0.95)",
+                  }} />
+                </div>
+              </Reveal>
+            </div>
+          </section>
+
+          {/* Manifesto */}
+          <section style={{ background: COLORS.bgAlt, padding: "96px 32px" }}>
+            <div style={{ maxWidth: 720, margin: "0 auto" }}>
+              <Reveal>
+                <p style={{
+                  fontFamily: "'Cormorant Garamond', serif", fontSize: "clamp(20px, 3vw, 26px)",
+                  lineHeight: 1.7, color: COLORS.text, marginBottom: 28,
+                }}>We live in a world that rewards certainty — fast answers, proven methods, predictable outcomes. But the most alive people, teams, and experiences share something that certainty can't produce: <em>wonder</em>.</p>
+              </Reveal>
+              <Reveal delay={0.1}>
+                <p style={{
+                  fontFamily: "'DM Sans', sans-serif", fontSize: 16, lineHeight: 1.8,
+                  color: COLORS.textLight, marginBottom: 24,
+                }}>I've spent over a decade building places where curiosity comes alive — escape rooms, World Expo pavilions, immersive brand experiences. And then I got curious about curiosity itself. What I found, through 75+ research conversations across cultures and disciplines, is that curiosity is not a personality trait. It's a quality of attention. And like anything worth designing, it can be practiced, trained, and built.</p>
+              </Reveal>
+            </div>
+          </section>
+
+          {/* Credentials */}
+          <section style={{ padding: "48px 32px", borderBottom: `1px solid ${COLORS.border}` }}>
+            <div style={{
+              maxWidth: 1000, margin: "0 auto", display: "flex",
+              justifyContent: "center", flexWrap: "wrap", gap: "16px 40px", alignItems: "center",
+            }}>
+              {["World Expo 2025", "Google", "Rijksmuseum", "Heinz", "ABN-AMRO", "Adyen", "The Social Hub"].map(name => (
+                <span key={name} style={{
+                  fontFamily: "'DM Sans', sans-serif", fontSize: 13, fontWeight: 400,
+                  letterSpacing: "0.06em", color: COLORS.textLight, textTransform: "uppercase",
+                }}>{name}</span>
+              ))}
+            </div>
+          </section>
+
+          {/* Three Pillars */}
+          <section style={{ padding: "96px 32px" }}>
+            <div style={{
+              maxWidth: 1100, margin: "0 auto",
+              display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))", gap: 48,
+            }}>
+              {[
+                { label: "Speak", title: "Designing Wonder", desc: "Keynotes, workshops, and facilitation that don't just inspire — they shift how people pay attention. From TEDx stages to corporate offsites.", link: "speaking", cta: "Explore Speaking" },
+                { label: "Read", title: "Architecting Curiosity", desc: "Six embodied principles for designing a life of wonder. Born from 75+ research conversations and ten years of building immersive experiences. Coming soon.", link: "book", cta: "Explore the Book" },
+                { label: "Work", title: "Experience Design", desc: "As Design Director at Tellart, Pim leads holistic experience design for cultural and brand projects — most recently the Netherlands and Philippine Pavilions at World Expo 2025.", link: null, cta: "See Selected Work" },
+              ].map((pillar, i) => (
+                <Reveal key={pillar.label} delay={i * 0.12}>
+                  <div style={{
+                    padding: "40px 32px", border: `1px solid ${COLORS.border}`,
+                    height: "100%", display: "flex", flexDirection: "column", transition: "border-color 0.3s",
+                  }}
+                    onMouseOver={e => e.currentTarget.style.borderColor = COLORS.accent}
+                    onMouseOut={e => e.currentTarget.style.borderColor = COLORS.border}
+                  >
+                    <span style={{
+                      fontFamily: "'DM Sans', sans-serif", fontSize: 11, fontWeight: 500,
+                      letterSpacing: "0.16em", textTransform: "uppercase", color: COLORS.accent, marginBottom: 16,
+                    }}>{pillar.label}</span>
+                    <h3 style={{
+                      fontFamily: "'Cormorant Garamond', serif", fontSize: 28, fontWeight: 500,
+                      color: COLORS.text, marginBottom: 16, lineHeight: 1.3,
+                    }}>{pillar.title}</h3>
+                    <p style={{
+                      fontFamily: "'DM Sans', sans-serif", fontSize: 15, lineHeight: 1.7,
+                      color: COLORS.textLight, flex: 1, marginBottom: 24,
+                    }}>{pillar.desc}</p>
+                    <button onClick={() => { if (pillar.link) { setPage(pillar.link); window.scrollTo(0,0); } }}
+                      style={{
+                        background: "none", border: "none", cursor: "pointer",
+                        fontFamily: "'DM Sans', sans-serif", fontSize: 13, fontWeight: 500,
+                        color: COLORS.accent, letterSpacing: "0.04em", textAlign: "left", padding: 0,
+                      }}>{pillar.cta} {"\u2192"}</button>
+                  </div>
+                </Reveal>
+              ))}
+            </div>
+          </section>
+
+          {/* 6 Principles Preview */}
+          <section style={{ background: COLORS.bgDark, padding: "96px 32px", color: COLORS.cream }}>
+            <div style={{ maxWidth: 800, margin: "0 auto", textAlign: "center" }}>
+              <Reveal>
+                <h2 style={{
+                  fontFamily: "'Cormorant Garamond', serif", fontSize: "clamp(28px, 4vw, 40px)",
+                  fontWeight: 400, marginBottom: 20, lineHeight: 1.3,
+                }}>The 6 Principles of Curiosity</h2>
+              </Reveal>
+              <Reveal delay={0.1}>
+                <p style={{
+                  fontFamily: "'DM Sans', sans-serif", fontSize: 16, lineHeight: 1.7,
+                  color: "rgba(248,244,239,0.7)", marginBottom: 48, maxWidth: 560, margin: "0 auto 48px",
+                }}>A framework for designing wonder — in yourself, your teams, and the experiences you create for others.</p>
+              </Reveal>
+              <div style={{
+                display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(140px, 1fr))", gap: 24, marginBottom: 48,
+              }}>
+                {[
+                  { name: "Observing", stage: "Sowing" },
+                  { name: "Suspending", stage: "Sowing" },
+                  { name: "Apprenticing", stage: "Growing" },
+                  { name: "Ritualizing", stage: "Growing" },
+                  { name: "Gracing", stage: "Letting Go" },
+                  { name: "Flowing", stage: "Letting Go" },
+                ].map((p, i) => (
+                  <Reveal key={p.name} delay={0.2 + i * 0.08}>
+                    <div style={{ padding: "24px 8px" }}>
+                      <p style={{
+                        fontFamily: "'DM Sans', sans-serif", fontSize: 10, fontWeight: 500,
+                        letterSpacing: "0.14em", textTransform: "uppercase", color: COLORS.accentLight, marginBottom: 8,
+                      }}>{p.stage}</p>
+                      <p style={{
+                        fontFamily: "'Cormorant Garamond', serif", fontSize: 22,
+                        fontWeight: 500, fontStyle: "italic", color: COLORS.cream,
+                      }}>{p.name}</p>
+                    </div>
+                  </Reveal>
+                ))}
+              </div>
+              <Reveal delay={0.6}>
+                <p style={{
+                  fontFamily: "'Cormorant Garamond', serif", fontSize: 18,
+                  fontStyle: "italic", color: "rgba(248,244,239,0.6)", marginBottom: 40,
+                }}>These are verbs, not nouns. Things you do, not things you know.</p>
+                <button onClick={() => { setPage("book"); window.scrollTo(0,0); }} style={{
+                  background: "transparent", border: "1px solid rgba(248,244,239,0.4)",
+                  color: COLORS.cream, padding: "14px 32px",
+                  fontFamily: "'DM Sans', sans-serif", fontSize: 13, fontWeight: 400,
+                  letterSpacing: "0.08em", textTransform: "uppercase", cursor: "pointer", transition: "all 0.3s",
+                }}
+                  onMouseOver={e => { e.target.style.borderColor = COLORS.accentLight; e.target.style.color = COLORS.accentLight; }}
+                  onMouseOut={e => { e.target.style.borderColor = "rgba(248,244,239,0.4)"; e.target.style.color = COLORS.cream; }}
+                >Learn More in the Book {"\u2192"}</button>
+              </Reveal>
+            </div>
+          </section>
+
+          {/* Testimonial */}
+          <section style={{ padding: "96px 32px" }}>
+            <div style={{ maxWidth: 700, margin: "0 auto", textAlign: "center" }}>
+              <Reveal>
+                <p style={{
+                  fontFamily: "'Cormorant Garamond', serif", fontSize: "clamp(22px, 3vw, 28px)",
+                  fontStyle: "italic", lineHeight: 1.6, color: COLORS.text, marginBottom: 24,
+                }}>"One of the best experience designers I know. His attention to beautiful detail, gift for creating intricate and engaging narratives, and designing inherently personal experiences is second to none."</p>
+                <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: 14, fontWeight: 500, color: COLORS.accent }}>David Cranmer</p>
+                <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: 13, color: COLORS.textLight }}>Cal Poly University</p>
+              </Reveal>
+            </div>
+          </section>
+
+          {/* Selected Work */}
+          <section style={{ padding: "0 32px 96px" }}>
+            <div style={{ maxWidth: 1100, margin: "0 auto" }}>
+              <Reveal>
+                <h2 style={{
+                  fontFamily: "'Cormorant Garamond', serif", fontSize: 32, fontWeight: 400,
+                  color: COLORS.text, marginBottom: 48, textAlign: "center",
+                }}>Selected Work</h2>
+              </Reveal>
+              <div style={{
+                display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))", gap: 32,
+              }}>
+                {[
+                  { title: "World Expo 2025 Osaka", desc: "Directing the guest experience for the Philippines Pavilion at World Expo 2025.", img: IMG_EXPO },
+                  { title: "Sherlocked", desc: "Co-founded the #1 escape room in Amsterdam. Pioneering experience design around mystery, revelation, and play.", img: IMG_SHERLOCKED },
+                  { title: "Wild Dining", desc: "Reimagined the dinner ritual in unexpected locations — turning ordinary spaces into places of wonder.", img: IMG_WILDDINING },
+                ].map((work, i) => (
+                  <Reveal key={work.title} delay={i * 0.12}>
+                    <div style={{ overflow: "hidden", cursor: "pointer" }}>
+                      <div style={{ overflow: "hidden", height: 220 }}>
+                        <img src={work.img} alt={work.title} style={{
+                          width: "100%", height: "100%", objectFit: "cover",
+                          transition: "transform 0.5s ease",
+                        }}
+                          onMouseOver={e => e.target.style.transform = "scale(1.05)"}
+                          onMouseOut={e => e.target.style.transform = "scale(1)"}
+                        />
+                      </div>
+                      <div style={{ padding: "20px 0" }}>
+                        <h3 style={{
+                          fontFamily: "'Cormorant Garamond', serif", fontSize: 24, fontWeight: 500,
+                          color: COLORS.text, marginBottom: 8,
+                        }}>{work.title}</h3>
+                        <p style={{
+                          fontFamily: "'DM Sans', sans-serif", fontSize: 15, lineHeight: 1.6, color: COLORS.textLight,
+                        }}>{work.desc}</p>
+                      </div>
+                    </div>
+                  </Reveal>
+                ))}
+              </div>
+            </div>
+          </section>
+
+          {/* Newsletter */}
+          <section style={{ background: COLORS.bgAlt, padding: "80px 32px" }}>
+            <div style={{ maxWidth: 520, margin: "0 auto", textAlign: "center" }}>
+              <Reveal>
+                <h2 style={{
+                  fontFamily: "'Cormorant Garamond', serif", fontSize: 32, fontWeight: 400,
+                  color: COLORS.text, marginBottom: 16,
+                }}>Get the occasional letter</h2>
+                <p style={{
+                  fontFamily: "'DM Sans', sans-serif", fontSize: 15, lineHeight: 1.7,
+                  color: COLORS.textLight, marginBottom: 32,
+                }}>Thoughts on curiosity, experience design, and what happens when you pay attention. No noise, no schedule — just a note when there's something worth sharing.</p>
+                <div style={{ display: "flex", gap: 8, maxWidth: 420, margin: "0 auto" }}>
+                  <input type="email" placeholder="Your email" style={{
+                    flex: 1, padding: "14px 16px", border: `1px solid ${COLORS.border}`,
+                    background: COLORS.white, fontFamily: "'DM Sans', sans-serif",
+                    fontSize: 14, color: COLORS.text, outline: "none",
+                  }} />
+                  <CTAButton>Sign Up</CTAButton>
+                </div>
+              </Reveal>
+            </div>
+          </section>
+        </div>
+      );
+    }
+
+    // ============ ABOUT PAGE ============
+    function AboutPage() {
+      return (
+        <div>
+          <section style={{ padding: "160px 32px 80px", maxWidth: 800, margin: "0 auto" }}>
+            <Reveal>
+              <p style={{
+                fontFamily: "'DM Sans', sans-serif", fontSize: 13, fontWeight: 500,
+                letterSpacing: "0.12em", textTransform: "uppercase", color: COLORS.accent, marginBottom: 24,
+              }}>About</p>
+            </Reveal>
+            <Reveal delay={0.1}>
+              <h1 style={{
+                fontFamily: "'Cormorant Garamond', serif", fontSize: "clamp(32px, 5vw, 48px)",
+                fontWeight: 400, lineHeight: 1.3, color: COLORS.text, marginBottom: 16,
+              }}>Pim Schachtschabel</h1>
+              <p style={{
+                fontFamily: "'Cormorant Garamond', serif", fontSize: 22,
+                fontStyle: "italic", color: COLORS.textLight, marginBottom: 48,
+              }}>Architect of Curiosity</p>
+            </Reveal>
+            <Reveal delay={0.2}>
+              <img src={IMG_PORTRAIT} alt="Pim Schachtschabel" style={{
+                width: "100%", maxWidth: 500, height: "auto", marginBottom: 64, display: "block",
+              }} />
+            </Reveal>
+          </section>
+
+          <section style={{ padding: "0 32px 96px", maxWidth: 680, margin: "0 auto" }}>
+            {[
+              { text: "I design experiences that make people curious — and then I got curious about curiosity itself.", lead: true },
+              { text: "That's probably the simplest way to tell this story. The longer version goes something like this:" },
+              { text: "I trained as an architect at Delft University of Technology, where I learned that the shape of a room determines what happens inside it. The height of a ceiling changes whether you feel expansive or intimate. The placement of a door determines where your eye goes first. The quality of light decides whether you linger or rush through. I became fascinated not just by how spaces look, but by how they feel — and what you could make people feel if you designed with enough care." },
+              { text: "That fascination led me in directions no one predicted. In 2014, I co-founded Sherlocked — what became the #1 escape room in Amsterdam and one of the most acclaimed in Europe. We designed experiences where strangers walked into a room as individuals and walked out as collaborators, having solved mysteries together that they couldn't have solved alone. I learned more about human curiosity in those rooms than in any classroom: how people open up when they feel safe, how a well-placed question can change the energy of a group, how the moment of almost knowing is more powerful than the answer itself." },
+              { text: "From there, the work kept expanding. I designed Wild Dining — an experience that reimagined the dinner ritual in unexpected locations, including the toilets of a moving train. I co-created Stone Soup, an international community bringing creators together to prototype experiences. I designed a royal experience for the Dutch King. And I joined Tellart as Design Director, where I now lead holistic experience design for major cultural and brand projects — most recently directing the guest experience for both the Netherlands Pavilion and the Philippine Pavilion at World Expo 2025 in Osaka." },
+              { text: "Along the way, the client list grew: Google, Heinz, ABN-AMRO, Rijksmuseum, JDE, Adyen, The Social Hub. Each project taught me something about the mechanics of wonder — what makes people lean in, what makes them forget they're being designed for, what makes an experience stay in someone's body long after they've left the room." },
+              { text: "And then the pandemic happened.", break: true },
+              { text: "In April 2020, locked down in San Francisco, I started a conversation with my collaborator Anthony Rocco that became the most important project of my life. We asked a simple question: Can curiosity be designed — not just in a room, but in a life?" },
+              { text: "Over the next year, together with Monica Canfield-Lenfest, we held more than 75 carefully designed conversations — we called them Interview Rituals — with people across cultures, backgrounds, and disciplines. These weren't standard interviews. They were experiences: each guest brought a meaningful song, we listened together, and then we explored four curated questions about how curiosity shows up in their lives. What we found changed everything." },
+              { text: "The most alive, creative, and present people we spoke with didn't have more answers. They had a different quality of attention. They had learned to observe without grasping, to open without losing themselves, to practice without performing, and to hold their lives with beauty and ease." },
+              { text: "From those conversations, six principles emerged — Observing, Suspending, Apprenticing, Ritualizing, Gracing, Flowing — that form the framework of our upcoming book, Architecting Curiosity, and the foundation of everything I now teach and speak about." },
+              { text: "These days, my work has a single throughline: helping people and organizations design the conditions where curiosity comes alive. Sometimes that means designing a World Expo pavilion. Sometimes it means facilitating a workshop where a leadership team rediscovers how to ask real questions. Sometimes it means standing on a stage and inviting 500 people to close their eyes and actually notice what they're sensing right now." },
+              { text: "The common thread is the belief that curiosity is not a personality trait — it's a quality of attention. And like any quality of attention, it can be practiced, trained, and designed. You don't need to be a naturally curious person. You need to be someone willing to begin." },
+              { text: "I live in Amsterdam. I play the cello, climb rocks outdoors, and meditate most mornings. I believe a flower doesn't have to try to be a flower — it just is. And I believe the same is true for your curiosity." },
+            ].map((para, i) => (
+              <Reveal key={i} delay={Math.min(i * 0.03, 0.3)}>
+                {para.break && <div style={{ height: 8 }} />}
+                <p style={{
+                  fontFamily: para.lead ? "'Cormorant Garamond', serif" : "'DM Sans', sans-serif",
+                  fontSize: para.lead ? 24 : (para.break ? 20 : 16),
+                  fontWeight: para.lead ? 500 : (para.break ? 500 : 400),
+                  fontStyle: para.lead || para.break ? "italic" : "normal",
+                  lineHeight: 1.8,
+                  color: para.lead || para.break ? COLORS.text : COLORS.textLight,
+                  marginBottom: 20,
+                }}>{para.text}</p>
+              </Reveal>
+            ))}
+
+            <Reveal>
+              <div style={{ margin: "40px 0", textAlign: "center" }}>
+                <img src={IMG_TINTYPE} alt="Pim Schachtschabel — portrait" style={{
+                  maxWidth: 320, width: "100%", height: "auto",
+                  filter: "sepia(0.3) contrast(1.05)",
+                }} />
+              </div>
+            </Reveal>
+          </section>
+        </div>
+      );
+    }
+
+    // ============ SPEAKING PAGE ============
+    function SpeakingPage() {
+      return (
+        <div>
+          <section style={{ position: "relative", overflow: "hidden" }}>
+            <div style={{ height: 420, overflow: "hidden", position: "relative" }}>
+              <img src={IMG_SPEAKING_ITW} alt="Pim speaking at Immersive Tech Week" style={{
+                width: "100%", height: "100%", objectFit: "cover", objectPosition: "center 30%",
+                filter: "brightness(0.6)",
+              }} />
+              <div style={{
+                position: "absolute", inset: 0, display: "flex", alignItems: "flex-end",
+                padding: "48px 32px",
+                background: "linear-gradient(to top, rgba(51,74,64,0.9) 0%, transparent 60%)",
+              }}>
+                <div style={{ maxWidth: 700 }}>
+                  <p style={{
+                    fontFamily: "'DM Sans', sans-serif", fontSize: 13, fontWeight: 500,
+                    letterSpacing: "0.12em", textTransform: "uppercase", color: COLORS.accentLight,
+                    marginBottom: 16,
+                  }}>Speaking & Workshops</p>
+                  <h1 style={{
+                    fontFamily: "'Cormorant Garamond', serif", fontSize: "clamp(28px, 4.5vw, 44px)",
+                    fontWeight: 300, lineHeight: 1.2, color: COLORS.cream, fontStyle: "italic",
+                  }}>Curiosity is not a mindset. It's a design skill. And it can be practiced.</h1>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <section style={{ padding: "64px 32px" }}>
+            <div style={{ maxWidth: 680, margin: "0 auto" }}>
+              <Reveal>
+                <p style={{
+                  fontFamily: "'DM Sans', sans-serif", fontSize: 16, lineHeight: 1.8,
+                  color: COLORS.textLight, marginBottom: 24,
+                }}>Pim Schachtschabel has spent over a decade designing the world's most immersive experiences — from escape rooms that turn strangers into collaborators, to World Expo pavilions that move millions. He brings that same design thinking to the stage: every keynote is an experience, every workshop is a space carefully constructed for genuine discovery.</p>
+              </Reveal>
+              <Reveal delay={0.1}>
+                <p style={{
+                  fontFamily: "'DM Sans', sans-serif", fontSize: 16, lineHeight: 1.8,
+                  color: COLORS.textLight,
+                }}>Drawing on his upcoming book <em>Architecting Curiosity</em>, his work at Tellart, and research with 75+ people across cultures, Pim offers audiences something rare — not just ideas to think about, but practices to embody.</p>
+              </Reveal>
+            </div>
+          </section>
+
+          <section style={{ padding: "0 32px 64px" }}>
+            <div style={{ maxWidth: 900, margin: "0 auto" }}>
+              <Reveal>
+                <img src={IMG_PANEL_ITW} alt="Pim on a panel at Immersive Tech Week" style={{
+                  width: "100%", height: "auto", objectFit: "cover",
+                }} />
+              </Reveal>
+            </div>
+          </section>
+
+          <section style={{ background: COLORS.bgAlt, padding: "80px 32px" }}>
+            <div style={{
+              maxWidth: 1100, margin: "0 auto",
+              display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))", gap: 48,
+            }}>
+              {[
+                { title: "Signature Keynotes", time: "30\u201360 min", desc: "High-energy, story-driven talks that blend practitioner insight with live experiential moments. Ideal for conferences, corporate events, and creative gatherings." },
+                { title: "Interactive Workshops", time: "90 min \u2013 full day", desc: "Hands-on sessions where participants practice the principles of curiosity through design exercises, sensory experiments, and collaborative rituals." },
+                { title: "Facilitation & Experience Design", time: "Custom", desc: "Custom-designed experiences for events, retreats, and gatherings — from opening rituals that shift energy to full-day curiosity immersions." },
+              ].map((format, i) => (
+                <Reveal key={format.title} delay={i * 0.1}>
+                  <div>
+                    <span style={{
+                      fontFamily: "'DM Sans', sans-serif", fontSize: 11, fontWeight: 500,
+                      letterSpacing: "0.14em", textTransform: "uppercase", color: COLORS.accent,
+                    }}>{format.time}</span>
+                    <h3 style={{
+                      fontFamily: "'Cormorant Garamond', serif", fontSize: 24, fontWeight: 500,
+                      color: COLORS.text, margin: "8px 0 12px", lineHeight: 1.3,
+                    }}>{format.title}</h3>
+                    <p style={{
+                      fontFamily: "'DM Sans', sans-serif", fontSize: 15, lineHeight: 1.7, color: COLORS.textLight,
+                    }}>{format.desc}</p>
+                  </div>
+                </Reveal>
+              ))}
+            </div>
+          </section>
+
+          <section style={{ padding: "96px 32px" }}>
+            <div style={{ maxWidth: 800, margin: "0 auto" }}>
+              <Reveal>
+                <h2 style={{
+                  fontFamily: "'Cormorant Garamond', serif", fontSize: 36, fontWeight: 400,
+                  color: COLORS.text, marginBottom: 64, textAlign: "center",
+                }}>Signature Talks</h2>
+              </Reveal>
+              {[
+                { num: "01", title: "Designing Wonder", subtitle: "The 6 Principles That Make People Come Alive", desc: "We live in a world that optimizes for efficiency, certainty, and answers. But the most alive people, teams, and organizations share something that can't be optimized: wonder. Drawing on a decade of designing immersive experiences and research with 75+ people across cultures, Pim reveals that curiosity is not a personality trait but a quality of attention that can be designed. This talk doesn't just change how audiences think about curiosity. It changes how they pay attention.", audience: "TEDx, creative conferences, design festivals, all-hands meetings" },
+                { num: "02", title: "Beyond Certainty", subtitle: "Leading Through Uncertainty with the Architect's Mindset", desc: "The greatest challenge facing leaders today isn't a lack of strategy — it's a lack of curiosity. When uncertainty rises, our instinct is to reach for answers faster. But the organizations that navigate disruption most successfully are the ones that learn to stay in the question longer. Pim offers leaders the 6 Principles of Curiosity as a leadership operating system — embodied tools for navigating change by designing with it, not controlling it.", audience: "Leadership offsites, innovation summits, corporate keynotes, executive retreats" },
+                { num: "03", title: "Re-Enchanting the Mundane", subtitle: "How to Make Magic in Everyday Experiences", desc: "What makes a train toilet a place of wonder? What turns a locked room into a journey of self-discovery? The answer isn't budget or technology — it's the design of curiosity. Pim opens his design toolkit and shares the principles behind experiences that transform the mundane. The audience doesn't just hear about it — they experience it, through a live exercise that proves wonder is never more than one design decision away.", audience: "Creative Mornings, design meetups, hospitality & events, educators" },
+              ].map((talk, i) => (
+                <Reveal key={talk.num} delay={i * 0.1}>
+                  <div style={{ borderTop: `1px solid ${COLORS.border}`, padding: "48px 0" }}>
+                    <span style={{
+                      fontFamily: "'DM Sans', sans-serif", fontSize: 12, fontWeight: 500,
+                      color: COLORS.accent, letterSpacing: "0.1em",
+                    }}>{talk.num}</span>
+                    <h3 style={{
+                      fontFamily: "'Cormorant Garamond', serif", fontSize: 30, fontWeight: 500,
+                      color: COLORS.text, margin: "8px 0 4px", lineHeight: 1.3,
+                    }}>{talk.title}</h3>
+                    <p style={{
+                      fontFamily: "'Cormorant Garamond', serif", fontSize: 18,
+                      fontStyle: "italic", color: COLORS.textLight, marginBottom: 20,
+                    }}>{talk.subtitle}</p>
+                    <p style={{
+                      fontFamily: "'DM Sans', sans-serif", fontSize: 15, lineHeight: 1.8,
+                      color: COLORS.textLight, marginBottom: 16,
+                    }}>{talk.desc}</p>
+                    <p style={{
+                      fontFamily: "'DM Sans', sans-serif", fontSize: 13, color: COLORS.accent, fontStyle: "italic",
+                    }}>Ideal for: {talk.audience}</p>
+                  </div>
+                </Reveal>
+              ))}
+            </div>
+          </section>
+
+          <section style={{ background: COLORS.bgDark, padding: "96px 32px", color: COLORS.cream }}>
+            <div style={{ maxWidth: 800, margin: "0 auto" }}>
+              <Reveal>
+                <h2 style={{
+                  fontFamily: "'Cormorant Garamond', serif", fontSize: 32, fontWeight: 400,
+                  marginBottom: 64, textAlign: "center",
+                }}>What People Say</h2>
+              </Reveal>
+              {[
+                { quote: "Pim doesn't give talks. He designs experiences that happen to take place on a stage.", author: "Event Organizer", role: "[Placeholder]" },
+                { quote: "Pim holds a number of powerful opposites together... a surprisingly experienced, delightfully playful and, perhaps most important, ever-curious leader.", author: "Victor Lacken", role: "Co-Founder, Sherlocked" },
+                { quote: "One of the best experience designers I know. Intentional and thoughtful... and also wonderfully engaging in the classroom.", author: "David Cranmer", role: "Cal Poly University" },
+                { quote: "Architecting Curiosity founders were my most marvelous teachers and guides.", author: "Lynn Borton", role: "Choose to Be Curious Podcast" },
+              ].map((t, i) => (
+                <Reveal key={i} delay={i * 0.1}>
+                  <div style={{ borderLeft: `2px solid ${COLORS.accentLight}`, paddingLeft: 32, marginBottom: 48 }}>
+                    <p style={{
+                      fontFamily: "'Cormorant Garamond', serif", fontSize: 20,
+                      fontStyle: "italic", lineHeight: 1.6, color: COLORS.cream, marginBottom: 16,
+                    }}>"{t.quote}"</p>
+                    <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: 14, fontWeight: 500, color: COLORS.accentLight }}>{t.author}</p>
+                    <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: 13, color: "rgba(248,244,239,0.5)" }}>{t.role}</p>
+                  </div>
+                </Reveal>
+              ))}
+            </div>
+          </section>
+
+          <section style={{ padding: "96px 32px", textAlign: "center" }}>
+            <Reveal>
+              <h2 style={{
+                fontFamily: "'Cormorant Garamond', serif", fontSize: 36, fontWeight: 400,
+                color: COLORS.text, marginBottom: 16,
+              }}>Let's design something together</h2>
+              <p style={{
+                fontFamily: "'DM Sans', sans-serif", fontSize: 16,
+                color: COLORS.textLight, marginBottom: 40,
+              }}>Based in Amsterdam. Speaking globally.</p>
+              <CTAButton>Get in Touch</CTAButton>
+            </Reveal>
+          </section>
+        </div>
+      );
+    }
+
+    // ============ BOOK PAGE ============
+    function BookPage() {
+      return (
+        <div>
+          <section style={{
+            padding: "160px 32px 48px", maxWidth: 700, margin: "0 auto", textAlign: "center",
+          }}>
+            <Reveal>
+              <p style={{
+                fontFamily: "'Cormorant Garamond', serif", fontSize: "clamp(20px, 3vw, 24px)",
+                fontStyle: "italic", lineHeight: 1.6, color: COLORS.textLight, marginBottom: 16,
+              }}>"This book doesn't ask you to think differently. It asks you to be differently — to observe more carefully, open more bravely, and hold your life with the kind of attention that turns the ordinary into something sacred."</p>
+              <p style={{
+                fontFamily: "'DM Sans', sans-serif", fontSize: 13, color: COLORS.accent, fontStyle: "italic",
+              }}>— Endorsement placeholder</p>
+            </Reveal>
+          </section>
+
+          <div style={{ width: 40, height: 1, background: COLORS.accent, margin: "0 auto" }} />
+
+          <section style={{ padding: "64px 32px 80px", textAlign: "center" }}>
+            <Reveal>
+              <h1 style={{
+                fontFamily: "'Cormorant Garamond', serif", fontSize: "clamp(40px, 7vw, 72px)",
+                fontWeight: 300, color: COLORS.text, lineHeight: 1.1, marginBottom: 12,
+              }}>Architecting Curiosity</h1>
+              <p style={{
+                fontFamily: "'Cormorant Garamond', serif", fontSize: 22,
+                fontStyle: "italic", color: COLORS.textLight, marginBottom: 8,
+              }}>Designing a Life of Wonder</p>
+              <p style={{
+                fontFamily: "'DM Sans', sans-serif", fontSize: 14,
+                color: COLORS.textLight, letterSpacing: "0.04em",
+              }}>By Pim Schachtschabel & Anthony Rocco</p>
+            </Reveal>
+            <Reveal delay={0.2}>
+              <img src={IMG_TINTYPE} alt="Pim Schachtschabel" style={{
+                width: 240, height: "auto", margin: "48px auto", display: "block",
+                filter: "sepia(0.25) contrast(1.05)",
+                boxShadow: "8px 12px 32px rgba(42,33,24,0.15)",
+              }} />
+            </Reveal>
+          </section>
+
+          <section style={{ background: COLORS.bgAlt, padding: "80px 32px" }}>
+            <div style={{ maxWidth: 660, margin: "0 auto" }}>
+              <Reveal>
+                <p style={{
+                  fontFamily: "'Cormorant Garamond', serif", fontSize: "clamp(20px, 3vw, 24px)",
+                  lineHeight: 1.7, color: COLORS.text, marginBottom: 28,
+                }}>What if curiosity isn't a personality trait — but a quality of attention that can be designed?</p>
+              </Reveal>
+              <Reveal delay={0.1}>
+                <p style={{
+                  fontFamily: "'DM Sans', sans-serif", fontSize: 16, lineHeight: 1.8,
+                  color: COLORS.textLight, marginBottom: 24,
+                }}>Born from more than 75 carefully designed conversations and a decade of building the world's most immersive experiences, <em>Architecting Curiosity</em> offers six guiding principles for bringing wonder back into daily life. Not as concepts to understand, but as practices to embody — in your morning routine, your work, your relationships, and the quiet moments in between.</p>
+              </Reveal>
+              <Reveal delay={0.2}>
+                <p style={{
+                  fontFamily: "'Cormorant Garamond', serif", fontSize: 18,
+                  fontStyle: "italic", color: COLORS.text, lineHeight: 1.7,
+                }}>This is not a self-help book. It is a space to enter, a practice to inhabit, and an invitation to architect a life where wonder is not the exception — but the architecture.</p>
+              </Reveal>
+            </div>
+          </section>
+
+          <section style={{ padding: "96px 32px" }}>
+            <div style={{ maxWidth: 900, margin: "0 auto" }}>
+              <Reveal>
+                <h2 style={{
+                  fontFamily: "'Cormorant Garamond', serif", fontSize: 36, fontWeight: 400,
+                  color: COLORS.text, marginBottom: 64, textAlign: "center",
+                }}>The 6 Principles</h2>
+              </Reveal>
+              {[
+                { stage: "Sowing", principles: [
+                  { name: "Observing", desc: "Using all your senses to notice what is around you in the moment" },
+                  { name: "Suspending", desc: "Temporarily being open to the possibility of something new" },
+                ]},
+                { stage: "Growing", principles: [
+                  { name: "Apprenticing", desc: "Using your beginner's eyes, mind, and heart to learn by doing" },
+                  { name: "Ritualizing", desc: "Intentionally exploring a sequence of activities" },
+                ]},
+                { stage: "Letting Go", principles: [
+                  { name: "Gracing", desc: "Acting with beauty, love, humor, and ease" },
+                  { name: "Flowing", desc: "Moving smoothly and continuously from moment to moment" },
+                ]},
+              ].map((group, gi) => (
+                <Reveal key={group.stage} delay={gi * 0.12}>
+                  <div style={{ marginBottom: 48 }}>
+                    <p style={{
+                      fontFamily: "'DM Sans', sans-serif", fontSize: 11, fontWeight: 500,
+                      letterSpacing: "0.16em", textTransform: "uppercase", color: COLORS.accent, marginBottom: 20,
+                    }}>{group.stage}</p>
+                    <div style={{
+                      display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))", gap: 24,
+                    }}>
+                      {group.principles.map(p => (
+                        <div key={p.name} style={{ padding: 32, border: `1px solid ${COLORS.border}` }}>
+                          <h3 style={{
+                            fontFamily: "'Cormorant Garamond', serif", fontSize: 26,
+                            fontWeight: 500, fontStyle: "italic", color: COLORS.text, marginBottom: 8,
+                          }}>{p.name}</h3>
+                          <p style={{
+                            fontFamily: "'DM Sans', sans-serif", fontSize: 15, lineHeight: 1.6, color: COLORS.textLight,
+                          }}>{p.desc}</p>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                </Reveal>
+              ))}
+              <Reveal delay={0.4}>
+                <p style={{
+                  fontFamily: "'Cormorant Garamond', serif", fontSize: 18,
+                  fontStyle: "italic", color: COLORS.textLight, textAlign: "center", marginTop: 16,
+                }}>And then: Rest. Integration. And the spiral begins again.</p>
+              </Reveal>
+            </div>
+          </section>
+
+          <section style={{ background: COLORS.bgDark, padding: "96px 32px", color: COLORS.cream }}>
+            <div style={{ maxWidth: 660, margin: "0 auto" }}>
+              <Reveal>
+                <h2 style={{
+                  fontFamily: "'Cormorant Garamond', serif", fontSize: 32, fontWeight: 400, marginBottom: 32,
+                }}>What Makes This Book Different</h2>
+              </Reveal>
+              <Reveal delay={0.1}>
+                <p style={{
+                  fontFamily: "'Cormorant Garamond', serif", fontSize: 22,
+                  fontStyle: "italic", lineHeight: 1.6, color: COLORS.cream, marginBottom: 28,
+                }}>Other books explain why curiosity matters. This one teaches you how to design it.</p>
+              </Reveal>
+              <Reveal delay={0.2}>
+                <p style={{
+                  fontFamily: "'DM Sans', sans-serif", fontSize: 15, lineHeight: 1.8,
+                  color: "rgba(248,244,239,0.7)", marginBottom: 24,
+                }}>Written by an architect and experience designer who has literally built spaces where curiosity comes alive, <em>Architecting Curiosity</em> approaches wonder the way an architect approaches a building: as something that can be designed. Not controlled — you can't control curiosity any more than you can control the weather. But you can build structures that invite it. You can design the spaces of your life so that wonder has somewhere to land.</p>
+              </Reveal>
+            </div>
+          </section>
+
+          <section style={{ padding: "96px 32px", textAlign: "center" }}>
+            <Reveal>
+              <h2 style={{
+                fontFamily: "'Cormorant Garamond', serif", fontSize: 32, fontWeight: 400,
+                color: COLORS.text, marginBottom: 16,
+              }}>The book is coming soon</h2>
+              <p style={{
+                fontFamily: "'DM Sans', sans-serif", fontSize: 16,
+                color: COLORS.textLight, marginBottom: 40,
+              }}>Be the first to know when it's available.</p>
+              <div style={{ display: "flex", gap: 8, maxWidth: 420, margin: "0 auto", flexWrap: "wrap", justifyContent: "center" }}>
+                <input type="email" placeholder="Your email" style={{
+                  flex: 1, minWidth: 200, padding: "14px 16px", border: `1px solid ${COLORS.border}`,
+                  background: COLORS.white, fontFamily: "'DM Sans', sans-serif",
+                  fontSize: 14, color: COLORS.text, outline: "none",
+                }} />
+                <CTAButton>Notify Me</CTAButton>
+              </div>
+            </Reveal>
+          </section>
+        </div>
+      );
+    }
+
+    // ============ FOOTER ============
+    function Footer() {
+      return (
+        <footer style={{ borderTop: `1px solid ${COLORS.border}`, padding: "48px 32px", textAlign: "center" }}>
+          <p style={{
+            fontFamily: "'Cormorant Garamond', serif", fontSize: 16, fontWeight: 500, color: COLORS.text, marginBottom: 8,
+          }}>Pim Schachtschabel</p>
+          <p style={{
+            fontFamily: "'DM Sans', sans-serif", fontSize: 13, color: COLORS.textLight, marginBottom: 16, letterSpacing: "0.04em",
+          }}>Architect of Curiosity {"\u00b7"} Amsterdam</p>
+          <div style={{ display: "flex", gap: 24, justifyContent: "center" }}>
+            {[
+              { label: "LinkedIn", href: "https://linkedin.com/in/pimschachtschabel" },
+              { label: "Email", href: "mailto:pim@pimschachtschabel.com" },
+              { label: "Instagram", href: "#" },
+            ].map(link => (
+              <a key={link.label} href={link.href} target="_blank" rel="noopener noreferrer" style={{
+                fontFamily: "'DM Sans', sans-serif", fontSize: 13, color: COLORS.accent,
+                cursor: "pointer", textDecoration: "none",
+              }}>{link.label}</a>
+            ))}
+          </div>
+        </footer>
+      );
+    }
+
+    // ============ APP ============
+    function App() {
+      const [page, setPage] = useState("home");
+      return (
+        <div style={{ background: COLORS.bg, color: COLORS.text, minHeight: "100vh" }}>
+          <Nav page={page} setPage={setPage} />
+          {page === "home" && <HomePage setPage={setPage} />}
+          {page === "about" && <AboutPage />}
+          {page === "speaking" && <SpeakingPage />}
+          {page === "book" && <BookPage />}
+          <Footer />
+        </div>
+      );
+    }
+
+    const root = ReactDOM.createRoot(document.getElementById("root"));
+    root.render(<App />);
+  </script>
 </body>
+</html>
