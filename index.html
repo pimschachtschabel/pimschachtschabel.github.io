@@ -566,6 +566,73 @@
       font-style: italic;
     }
 
+    /* ========== PRESS CARDS ========== */
+    .press-grid {
+      display: grid;
+      gap: var(--space-4);
+      grid-template-columns: 1fr;
+    }
+    @media (min-width: 768px) {
+      .press-grid { grid-template-columns: repeat(2, 1fr); gap: var(--space-5); }
+    }
+    @media (min-width: 1024px) {
+      .press-grid { grid-template-columns: repeat(3, 1fr); }
+    }
+    .press-card {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-3);
+      padding: var(--space-5);
+      background: var(--color-bg-default);
+      border: 1px solid var(--color-border-default);
+      border-radius: 1rem;
+      color: inherit;
+      text-decoration: none;
+      transition: transform var(--duration-fast), box-shadow var(--duration-fast), border-color var(--duration-fast);
+      position: relative;
+    }
+    .press-card:hover,
+    .press-card:focus-visible {
+      transform: translateY(-3px);
+      border-color: var(--color-accent);
+      box-shadow: 0 0.75rem 1.5rem rgba(45, 64, 56, 0.08);
+    }
+    .press-card__tag {
+      font-family: var(--font-sans);
+      font-size: 0.6875rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--color-accent);
+    }
+    .press-card__title {
+      font-family: var(--font-serif);
+      font-size: 1.375rem;
+      font-weight: 500;
+      line-height: 1.3;
+      color: var(--color-fg-default);
+      margin: 0;
+    }
+    .press-card__meta {
+      font-family: var(--font-sans);
+      font-size: 0.8125rem;
+      color: var(--color-fg-muted);
+      margin-top: auto;
+      display: flex;
+      align-items: center;
+      gap: var(--space-2);
+    }
+    .press-card__arrow {
+      width: 0.9rem;
+      height: 0.9rem;
+      flex-shrink: 0;
+      transition: transform var(--duration-fast);
+    }
+    .press-card:hover .press-card__arrow,
+    .press-card:focus-visible .press-card__arrow {
+      transform: translate(2px, -2px);
+    }
+
     /* ========== WORK CARDS ========== */
     .work-card { overflow: hidden; cursor: pointer; }
     .work-card__image-wrap { overflow: hidden; height: 13.75rem; }
@@ -809,6 +876,7 @@
         <li><button class="nav__link" data-nav="about">About</button></li>
         <li><button class="nav__link" data-nav="speaking">Speaking</button></li>
         <li><button class="nav__link" data-nav="book">Book</button></li>
+        <li><button class="nav__link" data-nav="press">Press</button></li>
         <li><button class="btn btn--primary nav__cta" data-nav="speaking">Book Pim</button></li>
       </ul>
       <button class="nav__hamburger" aria-label="Toggle menu" aria-expanded="false" aria-controls="mobile-menu">
@@ -822,6 +890,7 @@
       <li role="none"><button class="nav__mobile-link" role="menuitem" data-nav="about">About</button></li>
       <li role="none"><button class="nav__mobile-link" role="menuitem" data-nav="speaking">Speaking</button></li>
       <li role="none"><button class="nav__mobile-link" role="menuitem" data-nav="book">Book</button></li>
+      <li role="none"><button class="nav__mobile-link" role="menuitem" data-nav="press">Press</button></li>
     </ul>
   </nav>
 
@@ -1249,6 +1318,174 @@
             <p class="text-body mx-auto mb-6">I share progress and early chapters on Substack. No pressure, no schedule — read if it's useful.</p>
             <a class="btn btn--primary" href="https://substack.com/@pimschachtschabel" target="_blank" rel="noopener noreferrer">Read on Substack</a>
           </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- ==================== PRESS PAGE ==================== -->
+    <div id="page-press" class="page">
+
+      <!-- Header -->
+      <section class="section" style="padding-top:10rem;">
+        <div class="container container--medium">
+          <div class="reveal">
+            <p class="text-label mb-4">Press</p>
+          </div>
+          <div class="reveal reveal--d1">
+            <h1 class="heading-section">Seen &amp; Heard</h1>
+            <p class="text-caption mt-3 mb-7" style="color:var(--color-fg-muted);">A small archive of podcasts, press, and conversations over the years.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Podcasts -->
+      <section class="section" style="padding-top:0;">
+        <div class="container">
+          <div class="reveal">
+            <h2 class="heading-section mb-5">Podcasts</h2>
+          </div>
+          <div class="press-grid">
+            <a class="press-card reveal" href="#" target="_blank" rel="noopener noreferrer">
+              <span class="press-card__tag">Podcast</span>
+              <h3 class="press-card__title">The Business of Extraordinary Experiences &mdash; Immersive and Corona</h3>
+              <span class="press-card__meta">
+                <span>2020</span>
+                <svg class="press-card__arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+              </span>
+            </a>
+            <a class="press-card reveal reveal--d1" href="#" target="_blank" rel="noopener noreferrer">
+              <span class="press-card__tag">Podcast</span>
+              <h3 class="press-card__title">Season 5 &mdash; Being in Awe with the World</h3>
+              <span class="press-card__meta">
+                <span>Catching the Next Wave &middot; 2020</span>
+                <svg class="press-card__arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+              </span>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <!-- Press -->
+      <section class="section">
+        <div class="container">
+          <div class="reveal">
+            <h2 class="heading-section mb-5">Press</h2>
+          </div>
+          <div class="press-grid">
+            <a class="press-card reveal" href="https://www.bno.nl/blog/artikelen-10/pavilions-with-a-story-2487" target="_blank" rel="noopener noreferrer">
+              <span class="press-card__tag">Press</span>
+              <h3 class="press-card__title">Pavilions with a Story</h3>
+              <span class="press-card__meta">
+                <span>BNO &middot; 2025</span>
+                <svg class="press-card__arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+              </span>
+            </a>
+            <a class="press-card reveal reveal--d1" href="https://kanto.ph/spaces/architecture/philippine-pavilion-expo-osaka-2025/" target="_blank" rel="noopener noreferrer">
+              <span class="press-card__tag">Press</span>
+              <h3 class="press-card__title">Wonder in the Familiar: The Philippine Pavilion Osaka Expo 2025</h3>
+              <span class="press-card__meta">
+                <span>Kanto &middot; 2025</span>
+                <svg class="press-card__arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+              </span>
+            </a>
+            <a class="press-card reveal reveal--d2" href="https://www.fairplanet.org/story/can-immersive-storytelling-at-expo-2025-help-spark-a-more-sustainable-future/" target="_blank" rel="noopener noreferrer">
+              <span class="press-card__tag">Feature</span>
+              <h3 class="press-card__title">Can immersive storytelling at Expo 2025 help spark a more sustainable future?</h3>
+              <span class="press-card__meta">
+                <span>FairPlanet &middot; 2025</span>
+                <svg class="press-card__arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+              </span>
+            </a>
+            <a class="press-card reveal" href="https://vogue.sg/tellart-future-of-food-artificial-intelligence/" target="_blank" rel="noopener noreferrer">
+              <span class="press-card__tag">Press</span>
+              <h3 class="press-card__title">Tellart on the Future of Food &amp; Artificial Intelligence</h3>
+              <span class="press-card__meta">
+                <span>Vogue Singapore</span>
+                <svg class="press-card__arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+              </span>
+            </a>
+            <a class="press-card reveal reveal--d1" href="#" target="_blank" rel="noopener noreferrer">
+              <span class="press-card__tag">Press</span>
+              <h3 class="press-card__title">Locked in the Rijksmuseum</h3>
+              <span class="press-card__meta">
+                <span>Metro, Amsterdam &middot; 2019</span>
+                <svg class="press-card__arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+              </span>
+            </a>
+            <a class="press-card reveal reveal--d1" href="#" target="_blank" rel="noopener noreferrer">
+              <span class="press-card__tag">Press</span>
+              <h3 class="press-card__title">Escape game around Rembrandt</h3>
+              <span class="press-card__meta">
+                <span>NRC, Amsterdam &middot; 2019</span>
+                <svg class="press-card__arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+              </span>
+            </a>
+            <a class="press-card reveal reveal--d2" href="#" target="_blank" rel="noopener noreferrer">
+              <span class="press-card__tag">Press</span>
+              <h3 class="press-card__title">Pim locks people up in &ldquo;his&rdquo; escape rooms</h3>
+              <span class="press-card__meta">
+                <span>Metro, Amsterdam &middot; 2017</span>
+                <svg class="press-card__arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+              </span>
+            </a>
+            <a class="press-card reveal" href="#" target="_blank" rel="noopener noreferrer">
+              <span class="press-card__tag">TV</span>
+              <h3 class="press-card__title">After the escape room, now the break-in experience by Sherlocked</h3>
+              <span class="press-card__meta">
+                <span>De Wereld Draait Door &middot; 2016</span>
+                <svg class="press-card__arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+              </span>
+            </a>
+            <a class="press-card reveal reveal--d1" href="#" target="_blank" rel="noopener noreferrer">
+              <span class="press-card__tag">Press</span>
+              <h3 class="press-card__title">Something different: eating on a culinary platform</h3>
+              <span class="press-card__meta">
+                <span>Het Parool &middot; 2016</span>
+                <svg class="press-card__arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+              </span>
+            </a>
+            <a class="press-card reveal reveal--d2" href="#" target="_blank" rel="noopener noreferrer">
+              <span class="press-card__tag">Press</span>
+              <h3 class="press-card__title">The Makers Amsterdam &mdash; featuring Pim Schachtschabel &amp; Victor van Doorn</h3>
+              <span class="press-card__meta">
+                <span>Made in Amsterdam &middot; 2016</span>
+                <svg class="press-card__arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+              </span>
+            </a>
+            <a class="press-card reveal" href="#" target="_blank" rel="noopener noreferrer">
+              <span class="press-card__tag">Press</span>
+              <h3 class="press-card__title">Startup with potential</h3>
+              <span class="press-card__meta">
+                <span>NRC, Amsterdam &middot; 2016</span>
+                <svg class="press-card__arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+              </span>
+            </a>
+            <a class="press-card reveal reveal--d1" href="#" target="_blank" rel="noopener noreferrer">
+              <span class="press-card__tag">Press</span>
+              <h3 class="press-card__title">Wilddineren gives diners a one-off culinary night out</h3>
+              <span class="press-card__meta">
+                <span>Frame Magazine &middot; 2015</span>
+                <svg class="press-card__arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+              </span>
+            </a>
+            <a class="press-card reveal reveal--d2" href="#" target="_blank" rel="noopener noreferrer">
+              <span class="press-card__tag">Press</span>
+              <h3 class="press-card__title">Royal Design for the King of The Netherlands</h3>
+              <span class="press-card__meta">
+                <span>Architectuur NL &middot; 2013</span>
+                <svg class="press-card__arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+              </span>
+            </a>
+            <a class="press-card reveal" href="#" target="_blank" rel="noopener noreferrer">
+              <span class="press-card__tag">Radio</span>
+              <h3 class="press-card__title">Dining on the toilet</h3>
+              <span class="press-card__meta">
+                <span>Amsterdam FM</span>
+                <svg class="press-card__arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+              </span>
+            </a>
+          </div>
+          <p class="text-body mt-7" style="color:var(--color-fg-muted); font-size: var(--font-size-sm);">Links will be added as archives are recovered. Reach out if you have one missing.</p>
         </div>
       </section>
     </div>
