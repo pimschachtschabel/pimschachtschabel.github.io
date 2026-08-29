@@ -1,883 +1,42 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="no-js">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Pim Schachtschabel — Architect of Curiosity</title>
   <meta name="description" content="Pim Schachtschabel is an experience designer, speaker, and author who helps people and organizations design the conditions where wonder becomes possible.">
+  <link rel="canonical" href="https://pimschachtschabel.github.io/">
+
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Pim Schachtschabel">
+  <meta property="og:title" content="Pim Schachtschabel — Architect of Curiosity">
+  <meta property="og:description" content="Experience designer, speaker, and author. Helping people and organizations design the conditions where wonder becomes possible.">
+  <meta property="og:url" content="https://pimschachtschabel.github.io/">
+  <meta property="og:image" content="https://pimschachtschabel.github.io/images/portrait.jpg">
+  <meta property="og:image:width" content="500">
+  <meta property="og:image:height" content="500">
+  <meta property="og:image:alt" content="Portrait of Pim Schachtschabel">
+  <meta name="twitter:card" content="summary">
+
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,500&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
-  <style>
-    /* ========== DESIGN TOKENS ========== */
-    :root {
-      /* Colors — semantic naming (Primer pattern) */
-      --color-bg-default: #F8F4EF;
-      --color-bg-subtle: #EDE7DF;
-      --color-bg-emphasis: #334A40;
-      --color-bg-emphasis-alt: #3F5A4E;
-      --color-fg-default: #2D4038;
-      --color-fg-muted: #64806F;
-      --color-fg-on-emphasis: #F8F4EF;
-      --color-accent: #B86B3D;
-      --color-accent-hover: #D4956A;
-      --color-border-default: #D9D0C5;
-      --color-white: #FFFFFF;
-
-      /* Spacing — base-8 scale */
-      --space-0: 0;
-      --space-1: 0.25rem;   /* 4px */
-      --space-2: 0.5rem;    /* 8px */
-      --space-3: 1rem;      /* 16px */
-      --space-4: 1.5rem;    /* 24px */
-      --space-5: 2rem;      /* 32px */
-      --space-6: 2.5rem;    /* 40px */
-      --space-7: 3rem;      /* 48px */
-      --space-8: 4rem;      /* 64px */
-      --space-9: 6rem;      /* 96px */
-
-      /* Typography */
-      --font-serif: 'Cormorant Garamond', Georgia, 'Times New Roman', serif;
-      --font-sans: 'DM Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
-      --font-size-xs: 0.75rem;     /* 12px */
-      --font-size-sm: 0.8125rem;   /* 13px */
-      --font-size-base: 1rem;      /* 16px */
-      --font-size-md: 1.0625rem;   /* 17px */
-      --font-size-lg: 1.125rem;    /* 18px */
-      --font-size-xl: 1.375rem;    /* 22px */
-      --font-size-2xl: 1.75rem;    /* 28px */
-      --font-size-3xl: 2rem;       /* 32px */
-      --font-size-4xl: 2.5rem;     /* 40px */
-      --font-size-display: clamp(2rem, 5vw, 3.5rem);
-      --font-size-hero: clamp(2.5rem, 7vw, 4.5rem);
-      --line-height-tight: 1.15;
-      --line-height-snug: 1.3;
-      --line-height-normal: 1.7;
-      --line-height-relaxed: 1.8;
-
-      /* Layout */
-      --max-width-content: 75rem;  /* 1200px */
-      --max-width-narrow: 42.5rem; /* 680px */
-      --max-width-medium: 50rem;   /* 800px */
-      --max-width-prose: 45rem;    /* 720px */
-      --padding-page: var(--space-3);  /* 16px default, overridden at breakpoints */
-      --section-padding-y: var(--space-8);
-
-      /* Transitions */
-      --duration-fast: 0.2s;
-      --duration-normal: 0.3s;
-      --duration-slow: 0.7s;
-      --ease-default: ease;
-    }
-
-    /* ========== RESPONSIVE TOKENS ========== */
-    @media (min-width: 768px) {
-      :root {
-        --padding-page: var(--space-5);  /* 32px */
-        --section-padding-y: var(--space-9);
-      }
-    }
-    @media (min-width: 1400px) {
-      :root {
-        --padding-page: var(--space-7);  /* 48px */
-      }
-    }
-
-    /* ========== RESET & BASE ========== */
-    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
-    html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
-
-    @media (prefers-reduced-motion: reduce) {
-      html { scroll-behavior: auto; }
-      *, *::before, *::after {
-        animation-duration: 0.01ms !important;
-        transition-duration: 0.01ms !important;
-      }
-    }
-
-    body {
-      font-family: var(--font-sans);
-      font-size: var(--font-size-base);
-      line-height: var(--line-height-normal);
-      color: var(--color-fg-default);
-      background: var(--color-bg-default);
-      -webkit-font-smoothing: antialiased;
-    }
-
-    ::selection { background: var(--color-accent-hover); color: var(--color-white); }
-
-    img { max-width: 100%; height: auto; display: block; }
-
-    a { color: var(--color-accent); text-decoration: none; transition: color var(--duration-fast); }
-    a:hover { color: var(--color-accent-hover); }
-
-    /* Focus styles (Primer: visible focus ring) */
-    :focus-visible {
-      outline: 2px solid var(--color-accent);
-      outline-offset: 2px;
-    }
-
-    /* ========== SKIP LINK (Accessibility) ========== */
-    .skip-link {
-      position: absolute;
-      top: -100%;
-      left: var(--space-3);
-      padding: var(--space-2) var(--space-3);
-      background: var(--color-accent);
-      color: var(--color-white);
-      font-size: var(--font-size-sm);
-      font-weight: 500;
-      z-index: 200;
-      transition: top var(--duration-fast);
-    }
-    .skip-link:focus {
-      top: var(--space-2);
-    }
-
-    /* ========== LAYOUT UTILITIES ========== */
-    .container {
-      max-width: var(--max-width-content);
-      margin-inline: auto;
-      padding-inline: var(--padding-page);
-    }
-    .container--narrow { max-width: var(--max-width-narrow); }
-    .container--medium { max-width: var(--max-width-medium); }
-    .container--prose  { max-width: var(--max-width-prose); }
-
-    .section {
-      padding-block: var(--section-padding-y);
-      padding-inline: var(--padding-page);
-    }
-
-    /* ========== TYPOGRAPHY ========== */
-    .text-label {
-      font-family: var(--font-sans);
-      font-size: var(--font-size-sm);
-      font-weight: 500;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--color-accent);
-    }
-    .text-label--light { color: var(--color-accent-hover); }
-    .text-label--small {
-      font-size: 0.6875rem;
-      letter-spacing: 0.16em;
-    }
-
-    .heading-display {
-      font-family: var(--font-serif);
-      font-size: var(--font-size-display);
-      font-weight: 300;
-      line-height: var(--line-height-tight);
-      color: var(--color-fg-default);
-      font-style: italic;
-    }
-
-    .heading-hero {
-      font-family: var(--font-serif);
-      font-size: var(--font-size-hero);
-      font-weight: 300;
-      line-height: 1.1;
-      color: var(--color-fg-default);
-    }
-
-    .heading-section {
-      font-family: var(--font-serif);
-      font-size: clamp(1.75rem, 3vw, 2.25rem);
-      font-weight: 400;
-      line-height: var(--line-height-snug);
-      color: var(--color-fg-default);
-    }
-
-    .heading-card {
-      font-family: var(--font-serif);
-      font-size: var(--font-size-2xl);
-      font-weight: 500;
-      line-height: var(--line-height-snug);
-      color: var(--color-fg-default);
-    }
-
-    .heading-subsection {
-      font-family: var(--font-serif);
-      font-size: var(--font-size-xl);
-      font-weight: 500;
-      line-height: var(--line-height-snug);
-      color: var(--color-fg-default);
-    }
-
-    .text-lead {
-      font-family: var(--font-serif);
-      font-size: clamp(1.25rem, 3vw, 1.625rem);
-      line-height: var(--line-height-normal);
-      color: var(--color-fg-default);
-    }
-
-    .text-body {
-      font-family: var(--font-sans);
-      font-size: var(--font-size-base);
-      line-height: var(--line-height-relaxed);
-      color: var(--color-fg-muted);
-      max-width: 75ch;
-    }
-
-    .text-body--large {
-      font-size: var(--font-size-md);
-    }
-
-    .text-quote {
-      font-family: var(--font-serif);
-      font-style: italic;
-      font-size: clamp(1.25rem, 3vw, 1.75rem);
-      line-height: 1.6;
-      color: var(--color-fg-default);
-    }
-
-    .text-caption {
-      font-family: var(--font-serif);
-      font-size: var(--font-size-lg);
-      font-style: italic;
-      line-height: var(--line-height-normal);
-    }
-
-    /* ========== BUTTONS ========== */
-    .btn {
-      display: inline-block;
-      padding: 0.875rem 2rem;
-      font-family: var(--font-sans);
-      font-size: var(--font-size-sm);
-      font-weight: 500;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      cursor: pointer;
-      transition: all var(--duration-normal);
-      border: none;
-      min-height: 2.75rem; /* 44px touch target */
-    }
-    .btn--primary {
-      background: var(--color-accent);
-      color: var(--color-white);
-    }
-    .btn--primary:hover { background: var(--color-accent-hover); }
-    .btn--secondary {
-      background: transparent;
-      color: var(--color-fg-default);
-      border: 1.5px solid var(--color-fg-default);
-    }
-    .btn--secondary:hover {
-      color: var(--color-accent);
-      border-color: var(--color-accent);
-    }
-    .btn--ghost {
-      background: transparent;
-      color: var(--color-fg-on-emphasis);
-      border: 1px solid rgba(248,244,239,0.4);
-      padding: 0.875rem 2rem;
-    }
-    .btn--ghost:hover {
-      border-color: var(--color-accent-hover);
-      color: var(--color-accent-hover);
-    }
-
-    /* ========== NAV ========== */
-    .nav {
-      position: fixed;
-      top: 0; left: 0; right: 0;
-      z-index: 100;
-      border-bottom: 1px solid transparent;
-      transition: background var(--duration-normal), border-color var(--duration-normal), backdrop-filter var(--duration-normal);
-    }
-    .nav--scrolled {
-      background: rgba(248,244,239,0.95);
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
-      border-bottom-color: var(--color-border-default);
-    }
-    .nav__inner {
-      max-width: var(--max-width-content);
-      margin-inline: auto;
-      padding: var(--space-3) var(--padding-page);
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-    .nav__logo {
-      font-family: var(--font-serif);
-      font-size: var(--font-size-lg);
-      font-weight: 600;
-      color: var(--color-fg-default);
-      letter-spacing: 0.02em;
-      background: none;
-      border: none;
-      cursor: pointer;
-      padding: 0;
-    }
-    .nav__links {
-      display: flex;
-      gap: var(--space-5);
-      align-items: center;
-      list-style: none;
-    }
-    .nav__link {
-      font-family: var(--font-sans);
-      font-size: 0.875rem;
-      font-weight: 400;
-      color: var(--color-fg-muted);
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
-      background: none;
-      border: none;
-      border-bottom: 2px solid transparent;
-      padding-bottom: var(--space-1);
-      cursor: pointer;
-      transition: all var(--duration-normal);
-      min-height: 2.75rem;
-      display: inline-flex;
-      align-items: center;
-    }
-    .nav__link:hover, .nav__link--active {
-      color: var(--color-accent);
-      border-bottom-color: var(--color-accent);
-    }
-    .nav__cta {
-      padding: 0.625rem 1.5rem;
-      font-size: var(--font-size-sm);
-      min-height: 2.75rem;
-    }
-
-    /* Hamburger */
-    .nav__hamburger {
-      display: none;
-      background: none;
-      border: none;
-      cursor: pointer;
-      padding: var(--space-2);
-      min-height: 2.75rem;
-      min-width: 2.75rem;
-      align-items: center;
-      justify-content: center;
-    }
-    .nav__hamburger-line {
-      display: block;
-      width: 1.5rem;
-      height: 2px;
-      background: var(--color-fg-default);
-      transition: all var(--duration-normal);
-    }
-    .nav__hamburger-line + .nav__hamburger-line { margin-top: 6px; }
-    .nav__hamburger[aria-expanded="true"] .nav__hamburger-line:nth-child(1) {
-      transform: rotate(45deg) translate(4px, 4px);
-    }
-    .nav__hamburger[aria-expanded="true"] .nav__hamburger-line:nth-child(2) {
-      opacity: 0;
-    }
-    .nav__hamburger[aria-expanded="true"] .nav__hamburger-line:nth-child(3) {
-      transform: rotate(-45deg) translate(5px, -5px);
-    }
-
-    /* Mobile nav */
-    .nav__mobile-menu {
-      display: none;
-      background: var(--color-bg-default);
-      padding: var(--space-3) var(--padding-page) var(--space-5);
-      border-bottom: 1px solid var(--color-border-default);
-      list-style: none;
-    }
-    .nav__mobile-menu.is-open { display: block; }
-    .nav__mobile-link {
-      display: block;
-      width: 100%;
-      text-align: left;
-      background: none;
-      border: none;
-      border-bottom: 1px solid var(--color-border-default);
-      font-family: var(--font-sans);
-      font-size: var(--font-size-base);
-      color: var(--color-fg-default);
-      padding: 0.75rem 0;
-      cursor: pointer;
-      min-height: 2.75rem;
-    }
-    .nav__mobile-link--active { color: var(--color-accent); }
-
-    @media (max-width: 767px) {
-      .nav__links { display: none; }
-      .nav__hamburger { display: flex; }
-    }
-
-    /* ========== SCROLL REVEAL ========== */
-    .reveal {
-      opacity: 0;
-      transform: translateY(1.5rem);
-      transition: opacity var(--duration-slow) var(--ease-default),
-                  transform var(--duration-slow) var(--ease-default);
-    }
-    .reveal.is-visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-    .reveal--d1 { transition-delay: 0.1s; }
-    .reveal--d2 { transition-delay: 0.2s; }
-    .reveal--d3 { transition-delay: 0.3s; }
-    .reveal--d4 { transition-delay: 0.45s; }
-    .reveal--d5 { transition-delay: 0.6s; }
-
-    @media (prefers-reduced-motion: reduce) {
-      .reveal { opacity: 1; transform: none; transition: none; }
-    }
-
-    /* ========== PAGE VISIBILITY ========== */
-    .page { display: none; }
-    .page.is-active { display: block; }
-
-    /* ========== HERO ========== */
-    .hero {
-      min-height: 100vh;
-      min-height: 100dvh;
-      display: flex;
-      align-items: center;
-      padding: 7.5rem var(--padding-page) 5rem;
-    }
-    .hero__inner {
-      max-width: var(--max-width-content);
-      margin-inline: auto;
-      width: 100%;
-      display: grid;
-      gap: var(--space-8);
-      align-items: center;
-    }
-    .hero__text { max-width: 33rem; }
-    .hero__text > * + * { margin-top: var(--space-4); }
-    .hero__text .heading-display { margin-top: var(--space-5); }
-    .hero__actions {
-      display: flex;
-      gap: var(--space-3);
-      flex-wrap: wrap;
-      margin-top: var(--space-6);
-    }
-    .hero__image {
-      width: clamp(16rem, 30vw, 22.5rem);
-      height: clamp(16rem, 30vw, 22.5rem);
-      object-fit: cover;
-      filter: contrast(1.02) saturate(0.95);
-    }
-
-    @media (min-width: 768px) {
-      .hero__inner {
-        grid-template-columns: 1fr auto;
-      }
-    }
-
-    /* ========== SECTION BACKGROUNDS ========== */
-    .bg-subtle  { background: var(--color-bg-subtle); }
-    .bg-emphasis { background: var(--color-bg-emphasis); color: var(--color-fg-on-emphasis); }
-    .bg-emphasis .text-body { color: rgba(248,244,239,0.7); }
-    .bg-emphasis .heading-section,
-    .bg-emphasis .heading-card,
-    .bg-emphasis .heading-subsection { color: var(--color-fg-on-emphasis); }
-
-    /* ========== CREDENTIALS BAR ========== */
-    .credentials {
-      padding-block: var(--space-7);
-      padding-inline: var(--padding-page);
-      border-bottom: 1px solid var(--color-border-default);
-    }
-    .credentials__list {
-      max-width: var(--max-width-content);
-      margin-inline: auto;
-      display: flex;
-      justify-content: center;
-      flex-wrap: wrap;
-      gap: var(--space-3) var(--space-6);
-      list-style: none;
-    }
-    .credentials__item {
-      font-size: var(--font-size-sm);
-      font-weight: 400;
-      letter-spacing: 0.06em;
-      color: var(--color-fg-muted);
-      text-transform: uppercase;
-    }
-
-    /* ========== CARD GRID ========== */
-    .card-grid {
-      display: grid;
-      gap: var(--space-7);
-    }
-    @media (min-width: 768px) {
-      .card-grid--2 { grid-template-columns: repeat(2, 1fr); }
-      .card-grid--3 { grid-template-columns: repeat(2, 1fr); }
-    }
-    @media (min-width: 1024px) {
-      .card-grid--3 { grid-template-columns: repeat(3, 1fr); }
-    }
-
-    /* ========== PILLAR CARDS ========== */
-    .pillar-card {
-      padding: var(--space-6) var(--space-5);
-      border: 1px solid var(--color-border-default);
-      display: flex;
-      flex-direction: column;
-      height: 100%;
-      transition: border-color var(--duration-normal);
-    }
-    .pillar-card:hover { border-color: var(--color-accent); }
-    .pillar-card > * + * { margin-top: var(--space-3); }
-    .pillar-card__body { flex: 1; }
-    .pillar-card__cta {
-      background: none;
-      border: none;
-      cursor: pointer;
-      font-family: var(--font-sans);
-      font-size: var(--font-size-sm);
-      font-weight: 500;
-      color: var(--color-accent);
-      letter-spacing: 0.04em;
-      text-align: left;
-      padding: 0;
-      margin-top: var(--space-4);
-    }
-
-    /* ========== PRINCIPLES GRID ========== */
-    .principles-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: var(--space-4);
-    }
-    @media (min-width: 768px) {
-      .principles-grid { grid-template-columns: repeat(3, 1fr); }
-    }
-    @media (min-width: 1024px) {
-      .principles-grid { grid-template-columns: repeat(6, 1fr); }
-    }
-    .principle-item { padding: var(--space-4) var(--space-2); text-align: center; }
-    .principle-item__stage {
-      font-family: var(--font-sans);
-      font-size: 0.625rem;
-      font-weight: 500;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      color: var(--color-accent-hover);
-      margin-bottom: var(--space-2);
-    }
-    .principle-item__name {
-      font-family: var(--font-serif);
-      font-size: var(--font-size-xl);
-      font-weight: 500;
-      font-style: italic;
-    }
-
-    /* ========== PRESS CARDS ========== */
-    .press-grid {
-      display: grid;
-      gap: var(--space-4);
-      grid-template-columns: 1fr;
-    }
-    @media (min-width: 768px) {
-      .press-grid { grid-template-columns: repeat(2, 1fr); gap: var(--space-5); }
-    }
-    @media (min-width: 1024px) {
-      .press-grid { grid-template-columns: repeat(3, 1fr); }
-    }
-    .press-card {
-      display: flex;
-      flex-direction: column;
-      gap: var(--space-3);
-      padding: var(--space-5);
-      background: var(--color-bg-default);
-      border: 1px solid var(--color-border-default);
-      border-radius: 1rem;
-      color: inherit;
-      text-decoration: none;
-      transition: transform var(--duration-fast), box-shadow var(--duration-fast), border-color var(--duration-fast);
-      position: relative;
-    }
-    .press-card:hover,
-    .press-card:focus-visible {
-      transform: translateY(-3px);
-      border-color: var(--color-accent);
-      box-shadow: 0 0.75rem 1.5rem rgba(45, 64, 56, 0.08);
-    }
-    .press-card__tag {
-      font-family: var(--font-sans);
-      font-size: 0.6875rem;
-      font-weight: 600;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--color-accent);
-    }
-    .press-card__title {
-      font-family: var(--font-serif);
-      font-size: 1.375rem;
-      font-weight: 500;
-      line-height: 1.3;
-      color: var(--color-fg-default);
-      margin: 0;
-    }
-    .press-card__meta {
-      font-family: var(--font-sans);
-      font-size: 0.8125rem;
-      color: var(--color-fg-muted);
-      margin-top: auto;
-      display: flex;
-      align-items: center;
-      gap: var(--space-2);
-    }
-    .press-card__arrow {
-      width: 0.9rem;
-      height: 0.9rem;
-      flex-shrink: 0;
-      transition: transform var(--duration-fast);
-    }
-    .press-card:hover .press-card__arrow,
-    .press-card:focus-visible .press-card__arrow {
-      transform: translate(2px, -2px);
-    }
-
-    /* ========== WORK CARDS ========== */
-    .work-card { overflow: hidden; cursor: pointer; }
-    .work-card__image-wrap { overflow: hidden; height: 13.75rem; }
-    .work-card__image {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      transition: transform 0.5s ease;
-    }
-    .work-card:hover .work-card__image { transform: scale(1.05); }
-    .work-card__body { padding: var(--space-4) 0; }
-    .work-card__title {
-      font-family: var(--font-serif);
-      font-size: 1.5rem;
-      font-weight: 500;
-      color: var(--color-fg-default);
-      margin-bottom: var(--space-2);
-    }
-
-    /* ========== ELSEWHERE ========== */
-    .elsewhere__links {
-      list-style: none;
-      display: flex;
-      flex-wrap: wrap;
-      gap: var(--space-4);
-      justify-content: center;
-      padding: 0;
-      margin: 0;
-    }
-    .social-icon {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      width: 3rem;
-      height: 3rem;
-      border-radius: 50%;
-      color: var(--color-fg-muted);
-      background: transparent;
-      transition: color var(--duration-fast), background-color var(--duration-fast), transform var(--duration-fast);
-    }
-    .social-icon svg {
-      width: 1.5rem;
-      height: 1.5rem;
-      display: block;
-    }
-    .social-icon:hover,
-    .social-icon:focus-visible {
-      color: var(--color-accent);
-      background: var(--color-bg-default);
-      transform: translateY(-2px);
-    }
-
-    /* ========== SPEAKING HERO ========== */
-    .speaking-hero { position: relative; overflow: hidden; }
-    .speaking-hero__image {
-      width: 100%;
-      height: 26.25rem;
-      object-fit: cover;
-      object-position: center 30%;
-      filter: brightness(0.6);
-    }
-    .speaking-hero__overlay {
-      position: absolute;
-      inset: 0;
-      display: flex;
-      align-items: flex-end;
-      padding: var(--space-7) var(--padding-page);
-      background: linear-gradient(to top, rgba(51,74,64,0.9) 0%, transparent 60%);
-    }
-    .speaking-hero__text { max-width: 43.75rem; }
-    .speaking-hero__text .heading-display { color: var(--color-fg-on-emphasis); }
-
-    /* ========== TALK CARDS ========== */
-    .talk { border-top: 1px solid var(--color-border-default); padding: var(--space-7) 0; }
-    .talk__num {
-      font-family: var(--font-sans);
-      font-size: var(--font-size-xs);
-      font-weight: 500;
-      color: var(--color-accent);
-      letter-spacing: 0.1em;
-    }
-    .talk__title {
-      font-family: var(--font-serif);
-      font-size: clamp(1.5rem, 3vw, 1.875rem);
-      font-weight: 500;
-      color: var(--color-fg-default);
-      margin: var(--space-2) 0 var(--space-1);
-      line-height: var(--line-height-snug);
-    }
-    .talk__subtitle {
-      font-family: var(--font-serif);
-      font-size: var(--font-size-lg);
-      font-style: italic;
-      color: var(--color-fg-muted);
-      margin-bottom: var(--space-4);
-    }
-    .talk__audience {
-      font-family: var(--font-sans);
-      font-size: var(--font-size-sm);
-      color: var(--color-accent);
-      font-style: italic;
-      margin-top: var(--space-3);
-    }
-
-    /* ========== TESTIMONIALS ========== */
-    .testimonial {
-      border-left: 2px solid var(--color-accent-hover);
-      padding-left: var(--space-5);
-      margin-bottom: var(--space-7);
-    }
-    .testimonial__quote {
-      font-family: var(--font-serif);
-      font-size: clamp(1.125rem, 2vw, 1.25rem);
-      font-style: italic;
-      line-height: 1.6;
-      margin-bottom: var(--space-3);
-    }
-    .testimonial__author {
-      font-family: var(--font-sans);
-      font-size: 0.875rem;
-      font-weight: 500;
-      color: var(--color-accent-hover);
-    }
-    .testimonial__role {
-      font-family: var(--font-sans);
-      font-size: var(--font-size-sm);
-      color: rgba(248,244,239,0.5);
-    }
-
-    /* ========== BOOK PAGE ========== */
-    .book-title {
-      font-family: var(--font-serif);
-      font-size: clamp(2.5rem, 7vw, 4.5rem);
-      font-weight: 300;
-      color: var(--color-fg-default);
-      line-height: 1.1;
-    }
-    .book-tintype {
-      width: 15rem;
-      height: auto;
-      margin: var(--space-7) auto;
-      filter: sepia(0.25) contrast(1.05);
-      box-shadow: 8px 12px 32px rgba(42,33,24,0.15);
-    }
-
-    /* Principle boxes on book page */
-    .principle-box {
-      padding: var(--space-5);
-      border: 1px solid var(--color-border-default);
-    }
-    .principle-box__name {
-      font-family: var(--font-serif);
-      font-size: 1.625rem;
-      font-weight: 500;
-      font-style: italic;
-      color: var(--color-fg-default);
-      margin-bottom: var(--space-2);
-    }
-
-    /* ========== ABOUT PAGE ========== */
-    .about-para {
-      font-family: var(--font-sans);
-      font-size: var(--font-size-base);
-      line-height: var(--line-height-relaxed);
-      color: var(--color-fg-muted);
-      margin-bottom: var(--space-4);
-    }
-    .about-para--lead {
-      font-family: var(--font-serif);
-      font-size: 1.5rem;
-      font-weight: 500;
-      font-style: italic;
-      color: var(--color-fg-default);
-    }
-    .about-para--break {
-      font-size: 1.25rem;
-      font-weight: 500;
-      font-style: italic;
-      color: var(--color-fg-default);
-      margin-top: var(--space-2);
-    }
-
-    /* ========== FOOTER ========== */
-    .site-footer {
-      border-top: 1px solid var(--color-border-default);
-      padding: var(--space-7) var(--padding-page);
-      text-align: center;
-    }
-    .site-footer__name {
-      font-family: var(--font-serif);
-      font-size: var(--font-size-base);
-      font-weight: 500;
-      color: var(--color-fg-default);
-      margin-bottom: var(--space-2);
-    }
-    .site-footer__tagline {
-      font-family: var(--font-sans);
-      font-size: var(--font-size-sm);
-      color: var(--color-fg-muted);
-      margin-bottom: var(--space-3);
-      letter-spacing: 0.04em;
-    }
-    .site-footer__links {
-      display: flex;
-      gap: var(--space-4);
-      justify-content: center;
-      list-style: none;
-    }
-    .site-footer__links a {
-      font-size: var(--font-size-sm);
-    }
-
-    /* ========== UTILITY ========== */
-    .text-center { text-align: center; }
-    .mx-auto { margin-inline: auto; }
-    .mt-2 { margin-top: var(--space-2); }
-    .mt-3 { margin-top: var(--space-3); }
-    .mt-4 { margin-top: var(--space-4); }
-    .mt-5 { margin-top: var(--space-5); }
-    .mt-6 { margin-top: var(--space-6); }
-    .mt-7 { margin-top: var(--space-7); }
-    .mt-8 { margin-top: var(--space-8); }
-    .mb-3 { margin-bottom: var(--space-3); }
-    .mb-4 { margin-bottom: var(--space-4); }
-    .mb-5 { margin-bottom: var(--space-5); }
-    .mb-7 { margin-bottom: var(--space-7); }
-    .mb-8 { margin-bottom: var(--space-8); }
-    .max-w-narrow { max-width: var(--max-width-narrow); }
-    .max-w-medium { max-width: var(--max-width-medium); }
-  </style>
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <!-- Skip link for accessibility -->
   <a href="#content" class="skip-link">Skip to content</a>
 
   <!-- ========== NAV ========== -->
-  <nav class="nav" role="navigation" aria-label="Main navigation">
+  <nav class="nav" aria-label="Main">
     <div class="nav__inner">
-      <button class="nav__logo" data-nav="home">Pim Schachtschabel</button>
+      <a class="nav__logo" href="index.html">Pim Schachtschabel</a>
       <ul class="nav__links">
-        <li><button class="nav__link" data-nav="about">About</button></li>
-        <li><button class="nav__link" data-nav="speaking">Speaking</button></li>
-        <li><button class="nav__link" data-nav="book">Book</button></li>
-        <li><button class="nav__link" data-nav="press">Press</button></li>
-        <li><button class="btn btn--primary nav__cta" data-nav="speaking">Book Pim</button></li>
+        <li><a class="nav__link" href="about.html">About</a></li>
+        <li><a class="nav__link" href="speaking.html">Speaking</a></li>
+        <li><a class="nav__link" href="book.html">Book</a></li>
+        <li><a class="nav__link" href="press.html">Press</a></li>
+        <li><a class="btn btn--primary nav__cta" href="speaking.html">Book Pim</a></li>
       </ul>
       <button class="nav__hamburger" aria-label="Toggle menu" aria-expanded="false" aria-controls="mobile-menu">
         <span class="nav__hamburger-line"></span>
@@ -885,611 +44,189 @@
         <span class="nav__hamburger-line"></span>
       </button>
     </div>
-    <ul class="nav__mobile-menu" id="mobile-menu" role="menu">
-      <li role="none"><button class="nav__mobile-link" role="menuitem" data-nav="home">Home</button></li>
-      <li role="none"><button class="nav__mobile-link" role="menuitem" data-nav="about">About</button></li>
-      <li role="none"><button class="nav__mobile-link" role="menuitem" data-nav="speaking">Speaking</button></li>
-      <li role="none"><button class="nav__mobile-link" role="menuitem" data-nav="book">Book</button></li>
-      <li role="none"><button class="nav__mobile-link" role="menuitem" data-nav="press">Press</button></li>
+    <ul class="nav__mobile-menu" id="mobile-menu">
+      <li><a class="nav__mobile-link nav__mobile-link--active" href="index.html" aria-current="page">Home</a></li>
+      <li><a class="nav__mobile-link" href="about.html">About</a></li>
+      <li><a class="nav__mobile-link" href="speaking.html">Speaking</a></li>
+      <li><a class="nav__mobile-link" href="book.html">Book</a></li>
+      <li><a class="nav__mobile-link" href="press.html">Press</a></li>
     </ul>
   </nav>
 
-  <!-- ========== MAIN CONTENT ========== -->
   <main id="content">
 
-    <!-- ==================== HOME PAGE ==================== -->
-    <div id="page-home" class="page is-active">
-
-      <!-- Hero -->
-      <section class="hero">
-        <div class="hero__inner">
-          <div class="hero__text">
-            <div class="reveal">
-              <p class="text-label">Architect of Curiosity</p>
-            </div>
-            <div class="reveal reveal--d1">
-              <h1 class="heading-display">What if curiosity isn't something you find — but something you build?</h1>
-            </div>
-            <div class="reveal reveal--d2">
-              <p class="text-body text-body--large">I'm Pim Schachtschabel — an experience designer, speaker, and author who helps people and organizations design the conditions where wonder becomes possible.</p>
-            </div>
-            <div class="reveal reveal--d3 hero__actions">
-              <button class="btn btn--primary" data-nav="speaking">Book Pim to Speak</button>
-              <button class="btn btn--secondary" data-nav="book">Explore the Book</button>
-            </div>
+    <!-- Hero -->
+    <section class="hero">
+      <div class="hero__inner">
+        <div class="hero__text">
+          <div class="reveal">
+            <p class="text-label">Architect of Curiosity</p>
+          </div>
+          <div class="reveal reveal--d1">
+            <h1 class="heading-display">What if curiosity isn't something you find — but something you build?</h1>
           </div>
           <div class="reveal reveal--d2">
-            <img src="images/portrait.jpg" alt="Pim Schachtschabel" class="hero__image" width="500" height="500" loading="eager">
+            <p class="text-body text-body--large">I'm Pim Schachtschabel — an experience designer, speaker, and author who helps people and organizations design the conditions where wonder becomes possible.</p>
           </div>
-        </div>
-      </section>
-
-      <!-- Manifesto -->
-      <section class="section bg-subtle">
-        <div class="container container--prose">
-          <div class="reveal">
-            <p class="text-lead mb-4">We live in a world that rewards certainty — fast answers, proven methods, predictable outcomes. But the most alive people, teams, and experiences share something that certainty can't produce: <em>wonder</em>.</p>
+          <div class="reveal reveal--d3 hero__actions">
+            <a class="btn btn--primary" href="speaking.html">Book Pim to Speak</a>
+            <a class="btn btn--secondary" href="book.html">Explore the Book</a>
           </div>
-          <div class="reveal reveal--d1">
-            <p class="text-body">I've spent over a decade building places where curiosity comes alive — escape rooms, World Expo pavilions, immersive brand experiences. And then I got curious about curiosity itself. What I found, through 75+ research conversations across cultures and disciplines, is that curiosity is not a personality trait. It's a quality of attention. And like anything worth designing, it can be practiced, trained, and built.</p>
-          </div>
-        </div>
-      </section>
-
-      <!-- Credentials -->
-      <section class="credentials">
-        <ul class="credentials__list">
-          <li class="credentials__item">World Expo 2025</li>
-          <li class="credentials__item">Google</li>
-          <li class="credentials__item">Rijksmuseum</li>
-          <li class="credentials__item">Heinz</li>
-          <li class="credentials__item">ABN-AMRO</li>
-          <li class="credentials__item">Adyen</li>
-          <li class="credentials__item">The Social Hub</li>
-        </ul>
-      </section>
-
-      <!-- Three Pillars -->
-      <section class="section">
-        <div class="container card-grid card-grid--3">
-          <div class="reveal">
-            <article class="pillar-card">
-              <p class="text-label--small">Speak</p>
-              <h2 class="heading-card">Designing Wonder</h2>
-              <p class="text-body pillar-card__body">Keynotes, workshops, and facilitation that don't just inspire — they shift how people pay attention. From TEDx stages to corporate offsites.</p>
-              <button class="pillar-card__cta" data-nav="speaking">Explore Speaking &#8594;</button>
-            </article>
-          </div>
-          <div class="reveal reveal--d1">
-            <article class="pillar-card">
-              <p class="text-label--small">Read</p>
-              <h2 class="heading-card">Architecting Curiosity</h2>
-              <p class="text-body pillar-card__body">Six embodied principles for designing a life of wonder. Born from 75+ research conversations and ten years of building immersive experiences. Coming soon.</p>
-              <button class="pillar-card__cta" data-nav="book">Explore the Book &#8594;</button>
-            </article>
-          </div>
-          <div class="reveal reveal--d2">
-            <article class="pillar-card">
-              <p class="text-label--small">Work</p>
-              <h2 class="heading-card">Experience Design</h2>
-              <p class="text-body pillar-card__body">As Design Director at Tellart, Pim leads holistic experience design for cultural and brand projects — most recently the Netherlands and Philippine Pavilions at World Expo 2025.</p>
-              <span class="pillar-card__cta">See Selected Work &#8594;</span>
-            </article>
-          </div>
-        </div>
-      </section>
-
-      <!-- 6 Principles Preview -->
-      <section class="section bg-emphasis">
-        <div class="container text-center">
-          <div class="reveal">
-            <h2 class="heading-section mb-4">The 6 Principles of Curiosity</h2>
-          </div>
-          <div class="reveal reveal--d1">
-            <p class="text-body mx-auto mb-7" style="max-width:35rem;">A framework for designing wonder — in yourself, your teams, and the experiences you create for others.</p>
-          </div>
-          <div class="principles-grid mb-7">
-            <div class="reveal reveal--d2 principle-item"><p class="principle-item__stage">Sowing</p><p class="principle-item__name">Observing</p></div>
-            <div class="reveal reveal--d2 principle-item"><p class="principle-item__stage">Sowing</p><p class="principle-item__name">Suspending</p></div>
-            <div class="reveal reveal--d3 principle-item"><p class="principle-item__stage">Growing</p><p class="principle-item__name">Apprenticing</p></div>
-            <div class="reveal reveal--d3 principle-item"><p class="principle-item__stage">Growing</p><p class="principle-item__name">Ritualizing</p></div>
-            <div class="reveal reveal--d4 principle-item"><p class="principle-item__stage">Letting Go</p><p class="principle-item__name">Gracing</p></div>
-            <div class="reveal reveal--d4 principle-item"><p class="principle-item__stage">Letting Go</p><p class="principle-item__name">Flowing</p></div>
-          </div>
-          <div class="reveal reveal--d5">
-            <p class="text-caption mb-5" style="color:rgba(248,244,239,0.6);">These are verbs, not nouns. Things you do, not things you know.</p>
-            <button class="btn btn--ghost" data-nav="book">Learn More in the Book &#8594;</button>
-          </div>
-        </div>
-      </section>
-
-      <!-- Testimonial -->
-      <section class="section">
-        <div class="container text-center" style="max-width:43.75rem;">
-          <div class="reveal">
-            <p class="text-quote mb-4">"One of the best experience designers I know. His attention to beautiful detail, gift for creating intricate and engaging narratives, and designing inherently personal experiences is second to none."</p>
-            <p style="font-weight:500;color:var(--color-accent);">David Cranmer</p>
-            <p style="font-size:var(--font-size-sm);color:var(--color-fg-muted);">Cal Poly University</p>
-          </div>
-        </div>
-      </section>
-
-      <!-- Selected Work -->
-      <section class="section" style="padding-top:0;">
-        <div class="container">
-          <div class="reveal">
-            <h2 class="heading-section text-center mb-7">Selected Work</h2>
-          </div>
-          <div class="card-grid card-grid--3">
-            <div class="reveal">
-              <article class="work-card">
-                <div class="work-card__image-wrap"><img src="images/expo.jpg" alt="World Expo 2025 Osaka" class="work-card__image" width="600" height="400" loading="lazy"></div>
-                <div class="work-card__body"><h3 class="work-card__title">World Expo 2025 Osaka</h3><p class="text-body">Directing the guest experience for the Philippines Pavilion at World Expo 2025.</p></div>
-              </article>
-            </div>
-            <div class="reveal reveal--d1">
-              <article class="work-card">
-                <div class="work-card__image-wrap"><img src="images/sherlocked.jpg" alt="Sherlocked escape room" class="work-card__image" width="600" height="400" loading="lazy"></div>
-                <div class="work-card__body"><h3 class="work-card__title">Sherlocked</h3><p class="text-body">Co-founded the #1 escape room in Amsterdam. Pioneering experience design around mystery, revelation, and play.</p></div>
-              </article>
-            </div>
-            <div class="reveal reveal--d2">
-              <article class="work-card">
-                <div class="work-card__image-wrap"><img src="images/wilddining.jpg" alt="Wild Dining experience" class="work-card__image" width="600" height="400" loading="lazy"></div>
-                <div class="work-card__body"><h3 class="work-card__title">Wild Dining</h3><p class="text-body">Reimagined the dinner ritual in unexpected locations — turning ordinary spaces into places of wonder.</p></div>
-              </article>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- Elsewhere -->
-      <section class="section bg-subtle elsewhere">
-        <div class="container" style="max-width:36rem;">
-          <div class="reveal text-center">
-            <p class="text-label mb-4">Elsewhere</p>
-            <h2 class="heading-section mb-3">Let's stay in touch</h2>
-            <p class="text-body mx-auto mb-6">Best way to reach me is via LinkedIn. You can also read my writing on Substack, or follow along on Instagram.</p>
-            <ul class="elsewhere__links">
-              <li>
-                <a class="social-icon" href="https://www.linkedin.com/in/pimschachtschabel" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
-                  <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M20.5 2h-17A1.5 1.5 0 0 0 2 3.5v17A1.5 1.5 0 0 0 3.5 22h17a1.5 1.5 0 0 0 1.5-1.5v-17A1.5 1.5 0 0 0 20.5 2zM8 19H5v-9h3v9zM6.5 8.25A1.75 1.75 0 1 1 8.3 6.5a1.78 1.78 0 0 1-1.8 1.75zM19 19h-3v-4.74c0-1.42-.6-1.93-1.38-1.93A1.74 1.74 0 0 0 13 14.19a.66.66 0 0 0 0 .14V19h-3v-9h2.9v1.3a3.11 3.11 0 0 1 2.7-1.4c1.55 0 3.36.86 3.36 3.66V19z"/></svg>
-                </a>
-              </li>
-              <li>
-                <a class="social-icon" href="https://substack.com/@pimschachtschabel" target="_blank" rel="noopener noreferrer" aria-label="Substack">
-                  <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M22.539 8.242H1.46V5.406h21.08v2.836zM1.46 10.812V24L12 18.11 22.54 24V10.812H1.46zM22.54 0H1.46v2.836h21.08V0z"/></svg>
-                </a>
-              </li>
-              <li>
-                <a class="social-icon" href="https://www.instagram.com/pimschachtschabel/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
-                  <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
-                </a>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </section>
-    </div>
-
-    <!-- ==================== ABOUT PAGE ==================== -->
-    <div id="page-about" class="page">
-      <section class="section" style="padding-top:10rem;">
-        <div class="container container--medium">
-          <div class="reveal">
-            <p class="text-label mb-4">About</p>
-          </div>
-          <div class="reveal reveal--d1">
-            <h1 class="heading-section">Pim Schachtschabel</h1>
-            <p class="text-caption mt-3 mb-7" style="color:var(--color-fg-muted);">Architect of Curiosity</p>
-          </div>
-          <div class="reveal reveal--d2">
-            <img src="images/portrait.jpg" alt="Pim Schachtschabel" style="max-width:31.25rem;" width="500" height="500" loading="lazy" class="mb-8">
-          </div>
-        </div>
-      </section>
-
-      <section style="padding:0 var(--padding-page) var(--space-9);">
-        <div class="container container--narrow">
-          <div class="reveal"><p class="about-para about-para--lead">I design experiences that make people curious — and then I got curious about curiosity itself.</p></div>
-          <div class="reveal"><p class="about-para">That's probably the simplest way to tell this story. The longer version goes something like this:</p></div>
-          <div class="reveal"><p class="about-para">I trained as an architect at Delft University of Technology, where I learned that the shape of a room determines what happens inside it. The height of a ceiling changes whether you feel expansive or intimate. The placement of a door determines where your eye goes first. The quality of light decides whether you linger or rush through. I became fascinated not just by how spaces look, but by how they feel — and what you could make people feel if you designed with enough care.</p></div>
-          <div class="reveal"><p class="about-para">That fascination led me in directions no one predicted. In 2014, I co-founded Sherlocked — what became the #1 escape room in Amsterdam and one of the most acclaimed in Europe. We designed experiences where strangers walked into a room as individuals and walked out as collaborators, having solved mysteries together that they couldn't have solved alone. I learned more about human curiosity in those rooms than in any classroom: how people open up when they feel safe, how a well-placed question can change the energy of a group, how the moment of almost knowing is more powerful than the answer itself.</p></div>
-          <div class="reveal"><p class="about-para">From there, the work kept expanding. I designed Wild Dining — an experience that reimagined the dinner ritual in unexpected locations, including the toilets of a moving train. I co-created Stone Soup, an international community bringing creators together to prototype experiences. I designed a royal experience for the Dutch King. And I joined Tellart as Design Director, where I now lead holistic experience design for major cultural and brand projects — most recently directing the guest experience for both the Netherlands Pavilion and the Philippine Pavilion at World Expo 2025 in Osaka.</p></div>
-          <div class="reveal"><p class="about-para">Along the way, the client list grew: Google, Heinz, ABN-AMRO, Rijksmuseum, JDE, Adyen, The Social Hub. Each project taught me something about the mechanics of wonder — what makes people lean in, what makes them forget they're being designed for, what makes an experience stay in someone's body long after they've left the room.</p></div>
-          <div class="reveal"><p class="about-para about-para--break">And then the pandemic happened.</p></div>
-          <div class="reveal"><p class="about-para">In April 2020, locked down in San Francisco, I started a conversation with my collaborator Anthony Rocco that became the most important project of my life. We asked a simple question: Can curiosity be designed — not just in a room, but in a life?</p></div>
-          <div class="reveal"><p class="about-para">Over the next year, together with Monica Canfield-Lenfest, we held more than 75 carefully designed conversations — we called them Interview Rituals — with people across cultures, backgrounds, and disciplines. These weren't standard interviews. They were experiences: each guest brought a meaningful song, we listened together, and then we explored four curated questions about how curiosity shows up in their lives. What we found changed everything.</p></div>
-          <div class="reveal"><p class="about-para">The most alive, creative, and present people we spoke with didn't have more answers. They had a different quality of attention. They had learned to observe without grasping, to open without losing themselves, to practice without performing, and to hold their lives with beauty and ease.</p></div>
-          <div class="reveal"><p class="about-para">From those conversations, six principles emerged — Observing, Suspending, Apprenticing, Ritualizing, Gracing, Flowing — that form the framework of our upcoming book, Architecting Curiosity, and the foundation of everything I now teach and speak about.</p></div>
-          <div class="reveal"><p class="about-para">These days, my work has a single throughline: helping people and organizations design the conditions where curiosity comes alive. Sometimes that means designing a World Expo pavilion. Sometimes it means facilitating a workshop where a leadership team rediscovers how to ask real questions. Sometimes it means standing on a stage and inviting 500 people to close their eyes and actually notice what they're sensing right now.</p></div>
-          <div class="reveal"><p class="about-para">The common thread is the belief that curiosity is not a personality trait — it's a quality of attention. And like any quality of attention, it can be practiced, trained, and designed. You don't need to be a naturally curious person. You need to be someone willing to begin.</p></div>
-          <div class="reveal"><p class="about-para">I live in Amsterdam. I play the cello, climb rocks outdoors, and meditate most mornings. I believe a flower doesn't have to try to be a flower — it just is. And I believe the same is true for your curiosity.</p></div>
-          <div class="reveal text-center mt-6">
-            <img src="images/tintype.jpg" alt="Pim Schachtschabel — portrait" style="max-width:20rem;filter:sepia(0.3) contrast(1.05);" width="400" height="400" loading="lazy" class="mx-auto">
-          </div>
-        </div>
-      </section>
-    </div>
-
-    <!-- ==================== SPEAKING PAGE ==================== -->
-    <div id="page-speaking" class="page">
-
-      <!-- Hero -->
-      <section class="speaking-hero">
-        <img src="images/speaking_itw.jpg" alt="Pim speaking at Immersive Tech Week" class="speaking-hero__image" width="1200" height="420" loading="lazy">
-        <div class="speaking-hero__overlay">
-          <div class="speaking-hero__text">
-            <p class="text-label text-label--light mb-3">Speaking &amp; Workshops</p>
-            <h1 class="heading-display">Curiosity is not a mindset. It's a design skill. And it can be practiced.</h1>
-          </div>
-        </div>
-      </section>
-
-      <!-- Intro -->
-      <section class="section">
-        <div class="container container--narrow">
-          <div class="reveal">
-            <p class="text-body mb-4">Pim Schachtschabel has spent over a decade designing the world's most immersive experiences — from escape rooms that turn strangers into collaborators, to World Expo pavilions that move millions. He brings that same design thinking to the stage: every keynote is an experience, every workshop is a space carefully constructed for genuine discovery.</p>
-          </div>
-          <div class="reveal reveal--d1">
-            <p class="text-body">Drawing on his upcoming book <em>Architecting Curiosity</em>, his work at Tellart, and research with 75+ people across cultures, Pim offers audiences something rare — not just ideas to think about, but practices to embody.</p>
-          </div>
-        </div>
-      </section>
-
-      <!-- Panel image -->
-      <section style="padding:0 var(--padding-page) var(--space-8);">
-        <div class="container" style="max-width:56.25rem;">
-          <div class="reveal">
-            <img src="images/panel_itw.jpg" alt="Pim on a panel at Immersive Tech Week" width="900" height="400" loading="lazy">
-          </div>
-        </div>
-      </section>
-
-      <!-- Formats -->
-      <section class="section bg-subtle">
-        <div class="container card-grid card-grid--3">
-          <div class="reveal">
-            <div><p class="text-label--small">30–60 min</p><h2 class="heading-subsection mt-2 mb-3">Signature Keynotes</h2><p class="text-body">High-energy, story-driven talks that blend practitioner insight with live experiential moments. Ideal for conferences, corporate events, and creative gatherings.</p></div>
-          </div>
-          <div class="reveal reveal--d1">
-            <div><p class="text-label--small">90 min – full day</p><h2 class="heading-subsection mt-2 mb-3">Interactive Workshops</h2><p class="text-body">Hands-on sessions where participants practice the principles of curiosity through design exercises, sensory experiments, and collaborative rituals.</p></div>
-          </div>
-          <div class="reveal reveal--d2">
-            <div><p class="text-label--small">Custom</p><h2 class="heading-subsection mt-2 mb-3">Facilitation &amp; Experience Design</h2><p class="text-body">Custom-designed experiences for events, retreats, and gatherings — from opening rituals that shift energy to full-day curiosity immersions.</p></div>
-          </div>
-        </div>
-      </section>
-
-      <!-- Signature Talks -->
-      <section class="section">
-        <div class="container container--medium">
-          <div class="reveal">
-            <h2 class="heading-section text-center mb-8">Signature Talks</h2>
-          </div>
-          <div class="reveal">
-            <article class="talk">
-              <p class="talk__num">01</p>
-              <h3 class="talk__title">Designing Wonder</h3>
-              <p class="talk__subtitle">The 6 Principles That Make People Come Alive</p>
-              <p class="text-body">We live in a world that optimizes for efficiency, certainty, and answers. But the most alive people, teams, and organizations share something that can't be optimized: wonder. Drawing on a decade of designing immersive experiences and research with 75+ people across cultures, Pim reveals that curiosity is not a personality trait but a quality of attention that can be designed. This talk doesn't just change how audiences think about curiosity. It changes how they pay attention.</p>
-              <p class="talk__audience">Ideal for: TEDx, creative conferences, design festivals, all-hands meetings</p>
-            </article>
-          </div>
-          <div class="reveal">
-            <article class="talk">
-              <p class="talk__num">02</p>
-              <h3 class="talk__title">Beyond Certainty</h3>
-              <p class="talk__subtitle">Leading Through Uncertainty with the Architect's Mindset</p>
-              <p class="text-body">The greatest challenge facing leaders today isn't a lack of strategy — it's a lack of curiosity. When uncertainty rises, our instinct is to reach for answers faster. But the organizations that navigate disruption most successfully are the ones that learn to stay in the question longer. Pim offers leaders the 6 Principles of Curiosity as a leadership operating system — embodied tools for navigating change by designing with it, not controlling it.</p>
-              <p class="talk__audience">Ideal for: Leadership offsites, innovation summits, corporate keynotes, executive retreats</p>
-            </article>
-          </div>
-          <div class="reveal">
-            <article class="talk">
-              <p class="talk__num">03</p>
-              <h3 class="talk__title">Re-Enchanting the Mundane</h3>
-              <p class="talk__subtitle">How to Make Magic in Everyday Experiences</p>
-              <p class="text-body">What makes a train toilet a place of wonder? What turns a locked room into a journey of self-discovery? The answer isn't budget or technology — it's the design of curiosity. Pim opens his design toolkit and shares the principles behind experiences that transform the mundane. The audience doesn't just hear about it — they experience it, through a live exercise that proves wonder is never more than one design decision away.</p>
-              <p class="talk__audience">Ideal for: Creative Mornings, design meetups, hospitality &amp; events, educators</p>
-            </article>
-          </div>
-        </div>
-      </section>
-
-      <!-- Testimonials -->
-      <section class="section bg-emphasis">
-        <div class="container container--medium">
-          <div class="reveal">
-            <h2 class="heading-section text-center mb-8">What People Say</h2>
-          </div>
-          <div class="reveal"><div class="testimonial"><p class="testimonial__quote">"Pim doesn't give talks. He designs experiences that happen to take place on a stage."</p><p class="testimonial__author">Event Organizer</p><p class="testimonial__role">[Placeholder]</p></div></div>
-          <div class="reveal reveal--d1"><div class="testimonial"><p class="testimonial__quote">"Pim holds a number of powerful opposites together... a surprisingly experienced, delightfully playful and, perhaps most important, ever-curious leader."</p><p class="testimonial__author">Victor Lacken</p><p class="testimonial__role">Co-Founder, Sherlocked</p></div></div>
-          <div class="reveal reveal--d1"><div class="testimonial"><p class="testimonial__quote">"One of the best experience designers I know. Intentional and thoughtful... and also wonderfully engaging in the classroom."</p><p class="testimonial__author">David Cranmer</p><p class="testimonial__role">Cal Poly University</p></div></div>
-          <div class="reveal reveal--d2"><div class="testimonial"><p class="testimonial__quote">"Architecting Curiosity founders were my most marvelous teachers and guides."</p><p class="testimonial__author">Lynn Borton</p><p class="testimonial__role">Choose to Be Curious Podcast</p></div></div>
-        </div>
-      </section>
-
-      <!-- CTA -->
-      <section class="section text-center">
-        <div class="reveal">
-          <h2 class="heading-section mb-3">Let's design something together</h2>
-          <p class="text-body mx-auto mb-6">Based in Amsterdam. Speaking globally.</p>
-        </div>
-      </section>
-    </div>
-
-    <!-- ==================== BOOK PAGE ==================== -->
-    <div id="page-book" class="page">
-
-      <!-- Lead quote -->
-      <section class="section text-center" style="padding-top:10rem;padding-bottom:var(--space-7);">
-        <div class="container" style="max-width:43.75rem;">
-          <div class="reveal">
-            <p class="text-quote mb-3">"This book doesn't ask you to think differently. It asks you to be differently — to observe more carefully, open more bravely, and hold your life with the kind of attention that turns the ordinary into something sacred."</p>
-            <p style="font-size:var(--font-size-sm);color:var(--color-accent);font-style:italic;">— Endorsement placeholder</p>
-          </div>
-        </div>
-      </section>
-
-      <div style="width:2.5rem;height:1px;background:var(--color-accent);margin:0 auto;"></div>
-
-      <!-- Title & tintype -->
-      <section class="section text-center">
-        <div class="reveal">
-          <h1 class="book-title">Architecting Curiosity</h1>
-          <p class="text-caption mt-2" style="color:var(--color-fg-muted);">Designing a Life of Wonder</p>
-          <p style="font-size:0.875rem;color:var(--color-fg-muted);letter-spacing:0.04em;" class="mt-2">By Pim Schachtschabel &amp; Anthony Rocco</p>
         </div>
         <div class="reveal reveal--d2">
-          <img src="images/tintype.jpg" alt="Pim Schachtschabel" class="book-tintype mx-auto" width="400" height="400" loading="lazy">
+          <img src="images/portrait.jpg" alt="Pim Schachtschabel" class="hero__image" width="500" height="500" loading="eager" fetchpriority="high">
         </div>
-      </section>
+      </div>
+    </section>
 
-      <!-- Core Promise -->
-      <section class="section bg-subtle">
-        <div class="container container--narrow">
+    <!-- Manifesto -->
+    <section class="section bg-subtle">
+      <div class="container container--prose">
+        <div class="reveal">
+          <p class="text-lead mb-4">We live in a world that rewards certainty — fast answers, proven methods, predictable outcomes. But the most alive people, teams, and experiences share something that certainty can't produce: <em>wonder</em>.</p>
+        </div>
+        <div class="reveal reveal--d1">
+          <p class="text-body">I've spent over a decade building places where curiosity comes alive — escape rooms, World Expo pavilions, immersive brand experiences. And then I got curious about curiosity itself. What I found, through 75+ research conversations across cultures and disciplines, is that curiosity is not a personality trait. It's a quality of attention. And like anything worth designing, it can be practiced, trained, and built.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Credentials -->
+    <section class="credentials" aria-label="Selected clients">
+      <ul class="credentials__list">
+        <li class="credentials__item">World Expo 2025</li>
+        <li class="credentials__item">Google</li>
+        <li class="credentials__item">Rijksmuseum</li>
+        <li class="credentials__item">Heinz</li>
+        <li class="credentials__item">ABN-AMRO</li>
+        <li class="credentials__item">Adyen</li>
+        <li class="credentials__item">The Social Hub</li>
+      </ul>
+    </section>
+
+    <!-- Three Pillars -->
+    <section class="section">
+      <div class="container card-grid card-grid--3">
+        <div class="reveal">
+          <article class="pillar-card">
+            <p class="text-label--small">Speak</p>
+            <h2 class="heading-card">Designing Wonder</h2>
+            <p class="text-body pillar-card__body">Keynotes, workshops, and facilitation that don't just inspire — they shift how people pay attention. From TEDx stages to corporate offsites.</p>
+            <a class="pillar-card__cta" href="speaking.html">Explore Speaking &#8594;</a>
+          </article>
+        </div>
+        <div class="reveal reveal--d1">
+          <article class="pillar-card">
+            <p class="text-label--small">Read</p>
+            <h2 class="heading-card">Architecting Curiosity</h2>
+            <p class="text-body pillar-card__body">Six embodied principles for designing a life of wonder. Born from 75+ research conversations and ten years of building immersive experiences. Coming soon.</p>
+            <a class="pillar-card__cta" href="book.html">Explore the Book &#8594;</a>
+          </article>
+        </div>
+        <div class="reveal reveal--d2">
+          <article class="pillar-card">
+            <p class="text-label--small">Work</p>
+            <h2 class="heading-card">Experience Design</h2>
+            <p class="text-body pillar-card__body">As Design Director at Tellart, Pim leads holistic experience design for cultural and brand projects — most recently the Netherlands and Philippine Pavilions at World Expo 2025.</p>
+            <a class="pillar-card__cta" href="#selected-work">See Selected Work &#8594;</a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- 6 Principles Preview -->
+    <section class="section bg-emphasis">
+      <div class="container text-center">
+        <div class="reveal">
+          <h2 class="heading-section mb-4">The 6 Principles of Curiosity</h2>
+        </div>
+        <div class="reveal reveal--d1">
+          <p class="text-body mx-auto mb-7" style="max-width:35rem;">A framework for designing wonder — in yourself, your teams, and the experiences you create for others.</p>
+        </div>
+        <div class="principles-grid mb-7">
+          <div class="reveal reveal--d2 principle-item"><p class="principle-item__stage">Sowing</p><p class="principle-item__name">Observing</p></div>
+          <div class="reveal reveal--d2 principle-item"><p class="principle-item__stage">Sowing</p><p class="principle-item__name">Suspending</p></div>
+          <div class="reveal reveal--d3 principle-item"><p class="principle-item__stage">Growing</p><p class="principle-item__name">Apprenticing</p></div>
+          <div class="reveal reveal--d3 principle-item"><p class="principle-item__stage">Growing</p><p class="principle-item__name">Ritualizing</p></div>
+          <div class="reveal reveal--d4 principle-item"><p class="principle-item__stage">Letting Go</p><p class="principle-item__name">Gracing</p></div>
+          <div class="reveal reveal--d4 principle-item"><p class="principle-item__stage">Letting Go</p><p class="principle-item__name">Flowing</p></div>
+        </div>
+        <div class="reveal reveal--d5">
+          <p class="text-caption text-on-emphasis-muted mb-5">These are verbs, not nouns. Things you do, not things you know.</p>
+          <a class="btn btn--ghost" href="book.html">Learn More in the Book &#8594;</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Testimonial -->
+    <section class="section">
+      <div class="container text-center" style="max-width:43.75rem;">
+        <figure class="reveal">
+          <blockquote class="text-quote mb-4">"One of the best experience designers I know. His attention to beautiful detail, gift for creating intricate and engaging narratives, and designing inherently personal experiences is second to none."</blockquote>
+          <figcaption>
+            <p class="attribution__name">David Cranmer</p>
+            <p class="attribution__role">Cal Poly University</p>
+          </figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <!-- Selected Work -->
+    <section class="section pt-0" id="selected-work">
+      <div class="container">
+        <div class="reveal">
+          <h2 class="heading-section text-center mb-7">Selected Work</h2>
+        </div>
+        <div class="card-grid card-grid--3">
           <div class="reveal">
-            <p class="text-lead mb-4">What if curiosity isn't a personality trait — but a quality of attention that can be designed?</p>
+            <article class="work-card">
+              <div class="work-card__image-wrap"><img src="images/expo.jpg" alt="The Philippine Pavilion at World Expo 2025 Osaka" class="work-card__image" width="500" height="333" loading="lazy"></div>
+              <div class="work-card__body"><h3 class="work-card__title">World Expo 2025 Osaka</h3><p class="text-body">Directing the guest experience for the Philippines Pavilion at World Expo 2025.</p></div>
+            </article>
           </div>
           <div class="reveal reveal--d1">
-            <p class="text-body mb-4">Born from more than 75 carefully designed conversations and a decade of building the world's most immersive experiences, <em>Architecting Curiosity</em> offers six guiding principles for bringing wonder back into daily life. Not as concepts to understand, but as practices to embody — in your morning routine, your work, your relationships, and the quiet moments in between.</p>
+            <article class="work-card">
+              <div class="work-card__image-wrap"><img src="images/sherlocked.jpg" alt="A Sherlocked escape room set" class="work-card__image" width="500" height="333" loading="lazy"></div>
+              <div class="work-card__body"><h3 class="work-card__title">Sherlocked</h3><p class="text-body">Co-founded the #1 escape room in Amsterdam. Pioneering experience design around mystery, revelation, and play.</p></div>
+            </article>
           </div>
           <div class="reveal reveal--d2">
-            <p class="text-caption" style="color:var(--color-fg-default);">This is not a self-help book. It is a space to enter, a practice to inhabit, and an invitation to architect a life where wonder is not the exception — but the architecture.</p>
+            <article class="work-card">
+              <div class="work-card__image-wrap"><img src="images/wilddining.jpg" alt="A Wild Dining table set in an unexpected location" class="work-card__image" width="500" height="333" loading="lazy"></div>
+              <div class="work-card__body"><h3 class="work-card__title">Wild Dining</h3><p class="text-body">Reimagined the dinner ritual in unexpected locations — turning ordinary spaces into places of wonder.</p></div>
+            </article>
           </div>
         </div>
-      </section>
+      </div>
+    </section>
 
-      <!-- 6 Principles Full -->
-      <section class="section">
-        <div class="container" style="max-width:56.25rem;">
-          <div class="reveal">
-            <h2 class="heading-section text-center mb-8">The 6 Principles</h2>
-          </div>
-          <div class="reveal">
-            <p class="text-label--small mb-4">Sowing</p>
-            <div class="card-grid card-grid--2 mb-7">
-              <div class="principle-box"><h3 class="principle-box__name">Observing</h3><p class="text-body">Using all your senses to notice what is around you in the moment</p></div>
-              <div class="principle-box"><h3 class="principle-box__name">Suspending</h3><p class="text-body">Temporarily being open to the possibility of something new</p></div>
-            </div>
-          </div>
-          <div class="reveal">
-            <p class="text-label--small mb-4">Growing</p>
-            <div class="card-grid card-grid--2 mb-7">
-              <div class="principle-box"><h3 class="principle-box__name">Apprenticing</h3><p class="text-body">Using your beginner's eyes, mind, and heart to learn by doing</p></div>
-              <div class="principle-box"><h3 class="principle-box__name">Ritualizing</h3><p class="text-body">Intentionally exploring a sequence of activities</p></div>
-            </div>
-          </div>
-          <div class="reveal">
-            <p class="text-label--small mb-4">Letting Go</p>
-            <div class="card-grid card-grid--2 mb-7">
-              <div class="principle-box"><h3 class="principle-box__name">Gracing</h3><p class="text-body">Acting with beauty, love, humor, and ease</p></div>
-              <div class="principle-box"><h3 class="principle-box__name">Flowing</h3><p class="text-body">Moving smoothly and continuously from moment to moment</p></div>
-            </div>
-          </div>
-          <div class="reveal text-center">
-            <p class="text-caption" style="color:var(--color-fg-muted);">And then: Rest. Integration. And the spiral begins again.</p>
-          </div>
+    <!-- Elsewhere -->
+    <section class="section bg-subtle elsewhere">
+      <div class="container" style="max-width:36rem;">
+        <div class="reveal text-center">
+          <p class="text-label mb-4">Elsewhere</p>
+          <h2 class="heading-section mb-3">Let's stay in touch</h2>
+          <p class="text-body mx-auto mb-6">Best way to reach me is via LinkedIn. You can also read my writing on Substack, or follow along on Instagram.</p>
+          <ul class="elsewhere__links">
+            <li>
+              <a class="social-icon" href="https://www.linkedin.com/in/pimschachtschabel" target="_blank" rel="noopener noreferrer" aria-label="Pim Schachtschabel on LinkedIn">
+                <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M20.5 2h-17A1.5 1.5 0 0 0 2 3.5v17A1.5 1.5 0 0 0 3.5 22h17a1.5 1.5 0 0 0 1.5-1.5v-17A1.5 1.5 0 0 0 20.5 2zM8 19H5v-9h3v9zM6.5 8.25A1.75 1.75 0 1 1 8.3 6.5a1.78 1.78 0 0 1-1.8 1.75zM19 19h-3v-4.74c0-1.42-.6-1.93-1.38-1.93A1.74 1.74 0 0 0 13 14.19a.66.66 0 0 0 0 .14V19h-3v-9h2.9v1.3a3.11 3.11 0 0 1 2.7-1.4c1.55 0 3.36.86 3.36 3.66V19z"/></svg>
+              </a>
+            </li>
+            <li>
+              <a class="social-icon" href="https://substack.com/@pimschachtschabel" target="_blank" rel="noopener noreferrer" aria-label="Pim Schachtschabel on Substack">
+                <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M22.539 8.242H1.46V5.406h21.08v2.836zM1.46 10.812V24L12 18.11 22.54 24V10.812H1.46zM22.54 0H1.46v2.836h21.08V0z"/></svg>
+              </a>
+            </li>
+            <li>
+              <a class="social-icon" href="https://www.instagram.com/pimschachtschabel/" target="_blank" rel="noopener noreferrer" aria-label="Pim Schachtschabel on Instagram">
+                <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+              </a>
+            </li>
+          </ul>
         </div>
-      </section>
-
-      <!-- What makes it different -->
-      <section class="section bg-emphasis">
-        <div class="container container--narrow">
-          <div class="reveal">
-            <h2 class="heading-section mb-5">What Makes This Book Different</h2>
-          </div>
-          <div class="reveal reveal--d1">
-            <p class="text-quote mb-4" style="color:var(--color-fg-on-emphasis);">Other books explain why curiosity matters. This one teaches you how to design it.</p>
-          </div>
-          <div class="reveal reveal--d2">
-            <p class="text-body">Written by an architect and experience designer who has literally built spaces where curiosity comes alive, <em>Architecting Curiosity</em> approaches wonder the way an architect approaches a building: as something that can be designed. Not controlled — you can't control curiosity any more than you can control the weather. But you can build structures that invite it. You can design the spaces of your life so that wonder has somewhere to land.</p>
-          </div>
-        </div>
-      </section>
-
-      <!-- Follow -->
-      <section class="section text-center">
-        <div class="container" style="max-width:36rem;">
-          <div class="reveal">
-            <h2 class="heading-section mb-3">The book is coming soon</h2>
-            <p class="text-body mx-auto mb-6">I share progress and early chapters on Substack. No pressure, no schedule — read if it's useful.</p>
-            <a class="btn btn--primary" href="https://substack.com/@pimschachtschabel" target="_blank" rel="noopener noreferrer">Read on Substack</a>
-          </div>
-        </div>
-      </section>
-    </div>
-
-    <!-- ==================== PRESS PAGE ==================== -->
-    <div id="page-press" class="page">
-
-      <!-- Header -->
-      <section class="section" style="padding-top:10rem;">
-        <div class="container container--medium">
-          <div class="reveal">
-            <p class="text-label mb-4">Press</p>
-          </div>
-          <div class="reveal reveal--d1">
-            <h1 class="heading-section">Seen &amp; Heard</h1>
-            <p class="text-caption mt-3 mb-7" style="color:var(--color-fg-muted);">A small archive of podcasts, press, and conversations over the years.</p>
-          </div>
-        </div>
-      </section>
-
-      <!-- Podcasts -->
-      <section class="section" style="padding-top:0;">
-        <div class="container">
-          <div class="reveal">
-            <h2 class="heading-section mb-5">Podcasts</h2>
-          </div>
-          <div class="press-grid">
-            <a class="press-card reveal" href="#" target="_blank" rel="noopener noreferrer">
-              <span class="press-card__tag">Podcast</span>
-              <h3 class="press-card__title">The Business of Extraordinary Experiences &mdash; Immersive and Corona</h3>
-              <span class="press-card__meta">
-                <span>2020</span>
-                <svg class="press-card__arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
-              </span>
-            </a>
-            <a class="press-card reveal reveal--d1" href="#" target="_blank" rel="noopener noreferrer">
-              <span class="press-card__tag">Podcast</span>
-              <h3 class="press-card__title">Season 5 &mdash; Being in Awe with the World</h3>
-              <span class="press-card__meta">
-                <span>Catching the Next Wave &middot; 2020</span>
-                <svg class="press-card__arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
-              </span>
-            </a>
-          </div>
-        </div>
-      </section>
-
-      <!-- Press -->
-      <section class="section">
-        <div class="container">
-          <div class="reveal">
-            <h2 class="heading-section mb-5">Press</h2>
-          </div>
-          <div class="press-grid">
-            <a class="press-card reveal" href="https://www.bno.nl/blog/artikelen-10/pavilions-with-a-story-2487" target="_blank" rel="noopener noreferrer">
-              <span class="press-card__tag">Press</span>
-              <h3 class="press-card__title">Pavilions with a Story</h3>
-              <span class="press-card__meta">
-                <span>BNO &middot; 2025</span>
-                <svg class="press-card__arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
-              </span>
-            </a>
-            <a class="press-card reveal reveal--d1" href="https://kanto.ph/spaces/architecture/philippine-pavilion-expo-osaka-2025/" target="_blank" rel="noopener noreferrer">
-              <span class="press-card__tag">Press</span>
-              <h3 class="press-card__title">Wonder in the Familiar: The Philippine Pavilion Osaka Expo 2025</h3>
-              <span class="press-card__meta">
-                <span>Kanto &middot; 2025</span>
-                <svg class="press-card__arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
-              </span>
-            </a>
-            <a class="press-card reveal reveal--d2" href="https://www.fairplanet.org/story/can-immersive-storytelling-at-expo-2025-help-spark-a-more-sustainable-future/" target="_blank" rel="noopener noreferrer">
-              <span class="press-card__tag">Feature</span>
-              <h3 class="press-card__title">Can immersive storytelling at Expo 2025 help spark a more sustainable future?</h3>
-              <span class="press-card__meta">
-                <span>FairPlanet &middot; 2025</span>
-                <svg class="press-card__arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
-              </span>
-            </a>
-            <a class="press-card reveal" href="https://vogue.sg/tellart-future-of-food-artificial-intelligence/" target="_blank" rel="noopener noreferrer">
-              <span class="press-card__tag">Press</span>
-              <h3 class="press-card__title">In the face of the climate crisis, Tellart reimagines the future of food with artificial intelligence</h3>
-              <span class="press-card__meta">
-                <span>Vogue Singapore</span>
-                <svg class="press-card__arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
-              </span>
-            </a>
-            <a class="press-card reveal reveal--d1" href="#" target="_blank" rel="noopener noreferrer">
-              <span class="press-card__tag">Press</span>
-              <h3 class="press-card__title">Locked in the Rijksmuseum</h3>
-              <span class="press-card__meta">
-                <span>Metro, Amsterdam &middot; 2019</span>
-                <svg class="press-card__arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
-              </span>
-            </a>
-            <a class="press-card reveal reveal--d1" href="#" target="_blank" rel="noopener noreferrer">
-              <span class="press-card__tag">Press</span>
-              <h3 class="press-card__title">Escape game around Rembrandt</h3>
-              <span class="press-card__meta">
-                <span>NRC, Amsterdam &middot; 2019</span>
-                <svg class="press-card__arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
-              </span>
-            </a>
-            <a class="press-card reveal reveal--d2" href="#" target="_blank" rel="noopener noreferrer">
-              <span class="press-card__tag">Press</span>
-              <h3 class="press-card__title">Pim locks people up in &ldquo;his&rdquo; escape rooms</h3>
-              <span class="press-card__meta">
-                <span>Metro, Amsterdam &middot; 2017</span>
-                <svg class="press-card__arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
-              </span>
-            </a>
-            <a class="press-card reveal" href="#" target="_blank" rel="noopener noreferrer">
-              <span class="press-card__tag">TV</span>
-              <h3 class="press-card__title">After the escape room, now the break-in experience by Sherlocked</h3>
-              <span class="press-card__meta">
-                <span>De Wereld Draait Door &middot; 2016</span>
-                <svg class="press-card__arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
-              </span>
-            </a>
-            <a class="press-card reveal reveal--d1" href="#" target="_blank" rel="noopener noreferrer">
-              <span class="press-card__tag">Press</span>
-              <h3 class="press-card__title">Something different: eating on a culinary platform</h3>
-              <span class="press-card__meta">
-                <span>Het Parool &middot; 2016</span>
-                <svg class="press-card__arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
-              </span>
-            </a>
-            <a class="press-card reveal reveal--d2" href="#" target="_blank" rel="noopener noreferrer">
-              <span class="press-card__tag">Press</span>
-              <h3 class="press-card__title">The Makers Amsterdam &mdash; featuring Pim Schachtschabel &amp; Victor van Doorn</h3>
-              <span class="press-card__meta">
-                <span>Made in Amsterdam &middot; 2016</span>
-                <svg class="press-card__arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
-              </span>
-            </a>
-            <a class="press-card reveal" href="#" target="_blank" rel="noopener noreferrer">
-              <span class="press-card__tag">Press</span>
-              <h3 class="press-card__title">Startup with potential</h3>
-              <span class="press-card__meta">
-                <span>NRC, Amsterdam &middot; 2016</span>
-                <svg class="press-card__arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
-              </span>
-            </a>
-            <a class="press-card reveal reveal--d1" href="#" target="_blank" rel="noopener noreferrer">
-              <span class="press-card__tag">Press</span>
-              <h3 class="press-card__title">Wilddineren gives diners a one-off culinary night out</h3>
-              <span class="press-card__meta">
-                <span>Frame Magazine &middot; 2015</span>
-                <svg class="press-card__arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
-              </span>
-            </a>
-            <a class="press-card reveal reveal--d2" href="#" target="_blank" rel="noopener noreferrer">
-              <span class="press-card__tag">Press</span>
-              <h3 class="press-card__title">Royal Design for the King of The Netherlands</h3>
-              <span class="press-card__meta">
-                <span>Architectuur NL &middot; 2013</span>
-                <svg class="press-card__arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
-              </span>
-            </a>
-            <a class="press-card reveal" href="#" target="_blank" rel="noopener noreferrer">
-              <span class="press-card__tag">Radio</span>
-              <h3 class="press-card__title">Dining on the toilet</h3>
-              <span class="press-card__meta">
-                <span>Amsterdam FM</span>
-                <svg class="press-card__arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
-              </span>
-            </a>
-          </div>
-          <p class="text-body mt-7" style="color:var(--color-fg-muted); font-size: var(--font-size-sm);">Links will be added as archives are recovered. Reach out if you have one missing.</p>
-        </div>
-      </section>
-    </div>
-
+      </div>
+    </section>
   </main>
 
   <!-- ========== FOOTER ========== -->
@@ -1497,91 +234,36 @@
     <p class="site-footer__name">Pim Schachtschabel</p>
     <p class="site-footer__tagline">Architect of Curiosity &middot; Amsterdam</p>
     <ul class="site-footer__links">
+      <li><a href="about.html">About</a></li>
+      <li><a href="speaking.html">Speaking</a></li>
+      <li><a href="book.html">Book</a></li>
+      <li><a href="press.html">Press</a></li>
       <li><a href="https://www.linkedin.com/in/pimschachtschabel" target="_blank" rel="noopener noreferrer">LinkedIn</a></li>
       <li><a href="https://www.instagram.com/pimschachtschabel/" target="_blank" rel="noopener noreferrer">Instagram</a></li>
       <li><a href="https://substack.com/@pimschachtschabel" target="_blank" rel="noopener noreferrer">Substack</a></li>
     </ul>
   </footer>
 
-  <!-- ========== JAVASCRIPT ========== -->
-  <script>
-    (function() {
-      // --- Page Navigation ---
-      const pages = document.querySelectorAll('.page');
-      const navLinks = document.querySelectorAll('.nav__link');
-      const mobileLinks = document.querySelectorAll('.nav__mobile-link');
-      const allNavButtons = document.querySelectorAll('[data-nav]');
-      const mobileMenu = document.getElementById('mobile-menu');
-      const hamburger = document.querySelector('.nav__hamburger');
-
-      function showPage(id) {
-        pages.forEach(p => p.classList.remove('is-active'));
-        const target = document.getElementById('page-' + id);
-        if (target) target.classList.add('is-active');
-
-        // Update nav active states
-        navLinks.forEach(l => l.classList.toggle('nav__link--active', l.dataset.nav === id));
-        mobileLinks.forEach(l => l.classList.toggle('nav__mobile-link--active', l.dataset.nav === id));
-
-        // Close mobile menu
-        mobileMenu.classList.remove('is-open');
-        hamburger.setAttribute('aria-expanded', 'false');
-
-        window.scrollTo(0, 0);
-
-        // Re-trigger reveal for newly visible page
-        requestAnimationFrame(() => initReveal());
-      }
-
-      allNavButtons.forEach(btn => {
-        btn.addEventListener('click', () => showPage(btn.dataset.nav));
-      });
-
-      // --- Hamburger Menu ---
-      hamburger.addEventListener('click', () => {
-        const isOpen = mobileMenu.classList.toggle('is-open');
-        hamburger.setAttribute('aria-expanded', String(isOpen));
-      });
-
-      // --- Scroll Detection for Nav ---
-      const nav = document.querySelector('.nav');
-      let ticking = false;
-      window.addEventListener('scroll', () => {
-        if (!ticking) {
-          requestAnimationFrame(() => {
-            nav.classList.toggle('nav--scrolled', window.scrollY > 60);
-            ticking = false;
-          });
-          ticking = true;
-        }
-      }, { passive: true });
-
-      // --- Scroll Reveal ---
-      function initReveal() {
-        const reveals = document.querySelectorAll('.reveal:not(.is-visible)');
-        if (!reveals.length) return;
-
-        // Check if user prefers reduced motion
-        if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-          reveals.forEach(el => el.classList.add('is-visible'));
-          return;
-        }
-
-        const observer = new IntersectionObserver((entries) => {
-          entries.forEach(entry => {
-            if (entry.isIntersecting) {
-              entry.target.classList.add('is-visible');
-              observer.unobserve(entry.target);
-            }
-          });
-        }, { threshold: 0.12 });
-
-        reveals.forEach(el => observer.observe(el));
-      }
-
-      // Init on load
-      initReveal();
-    })();
+  <script src="main.js" defer></script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Pim Schachtschabel",
+    "url": "https://pimschachtschabel.github.io/",
+    "image": "https://pimschachtschabel.github.io/images/portrait.jpg",
+    "jobTitle": "Design Director",
+    "description": "Experience designer, speaker, and author who helps people and organizations design the conditions where wonder becomes possible.",
+    "worksFor": { "@type": "Organization", "name": "Tellart" },
+    "alumniOf": { "@type": "CollegeOrUniversity", "name": "Delft University of Technology" },
+    "address": { "@type": "PostalAddress", "addressLocality": "Amsterdam", "addressCountry": "NL" },
+    "knowsAbout": ["Experience design", "Curiosity", "Immersive storytelling", "Keynote speaking"],
+    "sameAs": [
+      "https://www.linkedin.com/in/pimschachtschabel",
+      "https://substack.com/@pimschachtschabel",
+      "https://www.instagram.com/pimschachtschabel/"
+    ]
+  }
   </script>
 </body>
 </html>
