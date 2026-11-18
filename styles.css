@@ -57,7 +57,6 @@
   /* Space Grotesk carries far more weight per pixel than Cormorant did,
      so the display sizes come down even though the impact goes up. */
   --font-size-display: clamp(1.875rem, 4.6vw, 3.25rem);
-  --font-size-hero: clamp(2.25rem, 6vw, 4rem);
   --track-display: -0.03em;
   --track-heading: -0.025em;
   --line-height-tight: 1.15;
@@ -71,7 +70,12 @@
   --max-width-medium: 50rem;   /* 800px */
   --max-width-prose: 45rem;    /* 720px */
   --padding-page: var(--space-3);  /* 16px default, overridden at breakpoints */
-  --section-padding-y: var(--space-8);
+  /* Both sides of every section pad, so this value lands DOUBLED at each
+     seam. 6rem read as 192px of nothing between blocks. */
+  --section-padding-y: var(--space-7);
+  /* Clears the fixed nav (~76px) plus breathing room. Was a hard 8rem, which
+     ate 19% of a 667px phone screen before any content appeared. */
+  --page-top-offset: 6.5rem;
 
   /* Transitions */
   --duration-fast: 0.2s;
@@ -84,7 +88,8 @@
 @media (min-width: 768px) {
   :root {
     --padding-page: var(--space-5);  /* 32px */
-    --section-padding-y: var(--space-9);
+    --section-padding-y: 4.5rem;
+    --page-top-offset: 8rem;
   }
 }
 @media (min-width: 1400px) {
@@ -160,8 +165,8 @@ a:hover { color: var(--color-accent-hover); }
   padding-inline: var(--padding-page);
 }
 
-/* Interior pages start below the fixed nav */
-.section--page-top { padding-top: 10rem; }
+/* Interior pages start below the fixed nav; matches the hero's opening. */
+.section--page-top { padding-top: var(--page-top-offset); }
 
 /* ========== TYPOGRAPHY ========== */
 .text-label {
@@ -187,14 +192,6 @@ a:hover { color: var(--color-accent-hover); }
   color: var(--color-fg-default);
 }
 
-.heading-hero {
-  font-family: var(--font-display);
-  font-size: var(--font-size-hero);
-  font-weight: 500;
-  line-height: 1.06;
-  letter-spacing: var(--track-display);
-  color: var(--color-fg-default);
-}
 
 .heading-section {
   font-family: var(--font-display);
@@ -335,8 +332,9 @@ a:hover { color: var(--color-accent-hover); }
   letter-spacing: var(--track-heading);
   text-decoration: none;
 }
-.nav__logo .swing { width: 1.125rem; height: 1.125rem; }
-.nav--over-media:not(.nav--scrolled) .nav__logo .swing { color: var(--color-accent-on-dark); }
+.nav__logo .thread--mark { width: 1.875rem; height: 1.125rem; }
+.nav__logo .thread--mark path { stroke: var(--color-accent); }
+.nav--over-media:not(.nav--scrolled) .nav__logo .thread--mark path { stroke: var(--color-accent-on-dark); }
 .nav__logo:hover { color: var(--color-accent); }
 .nav__links {
   display: flex;
@@ -515,31 +513,77 @@ a:hover { color: var(--color-accent-hover); }
   .js-reveal .reveal--d5 { transition-delay: 0.6s; }
 }
 
-/* ========== THE MARK — ARCHITECTURAL DOOR SWING ==========
-   The plan symbol for a door: the jamb, and the arc of its swing. It is the
-   drawing convention for a threshold, which is the thing Pim designs. */
-.swing {
-  display: block;
-  width: 1.5rem;
-  height: 1.5rem;
-  flex: none;
-  color: var(--color-accent);
+/* ========== THE MARK — THE THREAD ==========
+   Lifted from the Architecting Curiosity cover: one unbroken line that
+   wanders but never breaks. It replaces the door swing, because a mark that
+   already exists on the book ties the two together for nothing. One SVG
+   path, so it scales to any height and recolours per section. */
+.thread {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: max(var(--space-3), calc((100% - var(--max-width-content)) / 2));
+  width: 6rem;
+  z-index: 1;
+  pointer-events: none;
 }
-.swing path {
+.thread svg { width: 100%; height: 100%; display: block; }
+.thread path {
   fill: none;
-  stroke: currentColor;
-  stroke-width: 1.5;
+  stroke: var(--color-accent);
+  stroke-width: 1.25;
+  stroke-linecap: round;
 }
-.bg-emphasis .swing { color: var(--color-accent-on-dark); }
+.bg-emphasis .thread path { stroke: var(--color-accent-on-dark); }
+
+@media (max-width: 48rem) {
+  .thread { right: 0; width: 4.5rem; opacity: 0.45; }
+}
+
+/* Drawn by scrolling: following the page draws the line of inquiry. Same
+   scroll timeline as the focus pull, so it costs nothing on the main thread,
+   and it simply renders complete where that is unavailable. */
+@keyframes thread-draw { to { stroke-dashoffset: 0; } }
+
+@media (prefers-reduced-motion: no-preference) {
+  @supports (animation-timeline: view()) {
+    .thread path {
+      stroke-dasharray: 1;
+      stroke-dashoffset: 1;
+      animation: thread-draw linear both;
+      animation-timeline: view();
+      animation-range: entry 10% cover 70%;
+    }
+  }
+}
+
+/* Short curl, for a divider or beside a line of type. Always drawn whole. */
+.thread--inline {
+  position: static;
+  width: 4.5rem;
+  height: 2.25rem;
+  flex: none;
+  opacity: 1;
+}
+.thread--inline path {
+  stroke-dasharray: none;
+  stroke-dashoffset: 0;
+  animation: none;
+}
+.thread--mark { width: 2rem; height: 1.25rem; }
 
 .divider {
   display: flex;
   align-items: center;
-  gap: var(--space-3);
+  gap: var(--space-4);
   max-width: var(--max-width-content);
-  margin: var(--space-5) auto;
+  margin: 0 auto;
   padding-inline: var(--padding-page);
 }
+/* The divider carries no margin of its own: the block above already ends in
+   its own padding, and the section below matches it, so the curl sits
+   centred in the gap instead of being pushed against one side. */
+.divider + .section { padding-top: var(--space-7); }
 .divider::before,
 .divider::after {
   content: "";
@@ -603,31 +647,11 @@ a:hover { color: var(--color-accent-hover); }
 .bg-emphasis .frame::before,
 .bg-emphasis .frame::after { border-color: var(--color-accent-on-dark); }
 
-/* ========== THE POINTER — AN INSTRUMENT OF ATTENTION ==========
-   The pointer is a registration mark, matching the corners on framed media:
-   a gapped crosshair that closes into a reticle over anything interactive.
-   Running text keeps the I-beam, because losing the selection affordance to
-   a flourish is a bad trade. Touch devices never see any of this. */
-@media (hover: hover) and (pointer: fine) {
-  body {
-    cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24'%3E%3Cg stroke='%231F4ED8' stroke-width='1.25' stroke-linecap='round'%3E%3Cpath d='M12 3v5M12 16v5M3 12h5M16 12h5'/%3E%3C/g%3E%3C/svg%3E") 12 12, crosshair;
-  }
-  p, h1, h2, h3, h4, h5, h6, li, blockquote, figcaption, summary {
-    cursor: text;
-  }
-  a, button, summary, .btn, [role="button"],
-  a p, a h1, a h2, a h3, a h4, button p, summary p {
-    cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='28' height='28'%3E%3Cg fill='none' stroke='%231F4ED8' stroke-width='1.25' stroke-linecap='round'%3E%3Ccircle cx='14' cy='14' r='5.5'/%3E%3Cpath d='M14 2v4M14 22v4M2 14h4M22 14h4'/%3E%3C/g%3E%3C/svg%3E") 14 14, pointer;
-  }
-  .bg-emphasis, .bg-emphasis p, .bg-emphasis h2, .bg-emphasis h3, .speaking-hero {
-    cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24'%3E%3Cg stroke='%239DB8FF' stroke-width='1.25' stroke-linecap='round'%3E%3Cpath d='M12 3v5M12 16v5M3 12h5M16 12h5'/%3E%3C/g%3E%3C/svg%3E") 12 12, crosshair;
-  }
-  .bg-emphasis a, .bg-emphasis .btn, .speaking-hero a {
-    cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='28' height='28'%3E%3Cg fill='none' stroke='%239DB8FF' stroke-width='1.25' stroke-linecap='round'%3E%3Ccircle cx='14' cy='14' r='5.5'/%3E%3Cpath d='M14 2v4M14 22v4M2 14h4M22 14h4'/%3E%3C/g%3E%3C/svg%3E") 14 14, pointer;
-  }
-}
-
 /* Drafting grid, faded at both edges so it never stops on a hard line. */
+/* No overflow:hidden here. It would make the band a scroll container, and
+   every view() timeline inside it would resolve against a box that never
+   scrolls — freezing the focus pull wherever each element happens to sit.
+   The thread is inset top/bottom so it needs no clipping. */
 .band--grid { position: relative; }
 .band--grid::before {
   content: "";
@@ -641,7 +665,10 @@ a:hover { color: var(--color-accent-hover); }
   -webkit-mask-image: linear-gradient(to bottom, transparent, #000 15%, #000 85%, transparent);
   mask-image: linear-gradient(to bottom, transparent, #000 15%, #000 85%, transparent);
 }
-.band--grid > * { position: relative; z-index: 1; }
+/* Lift real content above the grid layer — but NOT .thread, which must stay
+   absolutely positioned. This selector and .thread have equal specificity, so
+   without the exclusion this one wins and drops the thread into normal flow. */
+.band--grid > *:not(.thread) { position: relative; z-index: 1; }
 
 /* The structure is only visible where you are looking: a second, brighter
    grid masked to a soft disc under the pointer. Purely additive — without
@@ -671,7 +698,7 @@ a:hover { color: var(--color-accent-hover); }
 .hero {
   display: flex;
   align-items: center;
-  padding: 9rem var(--padding-page) var(--space-9);
+  padding: var(--page-top-offset) var(--padding-page) var(--space-8);
 }
 .hero__inner {
   max-width: var(--max-width-content);
@@ -880,7 +907,6 @@ a.press-card:focus-visible .press-card__arrow {
 }
 
 /* ========== WORK CARDS ========== */
-.work-card { overflow: hidden; }
 .work-card { overflow: visible; }
 .work-card__image-wrap { overflow: hidden; height: 13.75rem; }
 .work-card__image {
@@ -958,7 +984,6 @@ a.press-card:focus-visible .press-card__arrow {
 /* ========== TALK CARDS ========== */
 .talk { border-top: 1px solid var(--color-border-default); padding: var(--space-7) 0; }
 .talk__num {
-  font-family: var(--font-body);
   font-size: var(--font-size-xs);
   font-weight: 500;
   color: var(--color-accent);
@@ -1025,30 +1050,25 @@ a.press-card:focus-visible .press-card__arrow {
 /* ========== BOOK PAGE ========== */
 .book-title {
   font-family: var(--font-display);
-  font-size: clamp(2.5rem, 7vw, 4.5rem);
-  font-weight: 300;
+  font-size: clamp(2.25rem, 6vw, 4rem);
+  font-weight: 500;
+  letter-spacing: var(--track-display);
   color: var(--color-fg-default);
-  line-height: 1.1;
+  line-height: 1.06;
 }
 .book-byline {
   font-size: 0.875rem;
   color: var(--color-fg-muted);
   letter-spacing: 0.04em;
 }
-.book-tintype {
-  width: 15rem;
-  height: auto;
-  margin: var(--space-7) auto;
-  filter: sepia(0.25) contrast(1.05);
-  box-shadow: 8px 12px 32px rgba(42, 33, 24, 0.15);
+/* The cover sits where the portrait used to. It is a product shot on its own
+   warm backdrop, so the registration corners matter here: they read it as a
+   placed photograph rather than as a page background that clashes. */
+.book-cover {
+  width: min(36rem, 100%);
+  margin: var(--space-7) auto 0;
 }
-.book-rule {
-  width: 2.5rem;
-  height: 1px;
-  background: var(--color-accent-muted);
-  margin: 0 auto;
-  border: 0;
-}
+
 
 /* Principle boxes on book page */
 .principle-box {
@@ -1062,6 +1082,32 @@ a.press-card:focus-visible .press-card__arrow {
   color: var(--color-fg-default);
   margin-bottom: var(--space-2);
 }
+
+/* A jacket blurb is read, not scanned, so it is set at reading size rather
+   than as a display pull quote. The left rule matches the condition callouts
+   on the work pages, so praise and proof share one device. */
+.endorsement { margin: 0; }
+.endorsement__quote {
+  margin: 0;
+  padding-left: var(--space-4);
+  border-left: 2px solid var(--color-accent-muted);
+  font-size: var(--font-size-md);
+  line-height: var(--line-height-relaxed);
+  color: var(--color-fg-default);
+}
+.endorsement__by {
+  margin-top: var(--space-4);
+  padding-left: calc(var(--space-4) + 2px);
+}
+
+/* The home page carries an excerpt inside the dark book band, where the
+   default ink and the muted role colour would both disappear. */
+.bg-emphasis .endorsement__quote {
+  color: var(--color-fg-on-emphasis);
+  border-left-color: var(--color-accent-on-dark);
+}
+.bg-emphasis .attribution__name { color: var(--color-accent-on-dark); }
+.bg-emphasis .attribution__role { color: var(--color-fg-on-emphasis-muted); }
 
 /* ========== ABOUT PAGE ========== */
 .about-para {
@@ -1175,14 +1221,9 @@ a.press-card:focus-visible .press-card__arrow {
   .case--reverse .case__media { order: 2; }
 }
 .case__media img { width: 100%; }
-.case__meta {
-  font-family: var(--font-body);
-  font-size: var(--font-size-xs);
-  font-weight: 500;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--color-fg-muted);
-}
+/* Paired with .anno in the markup; only the colour differs — a project's
+   byline is quieter than a label. */
+.case__meta { color: var(--color-fg-muted); }
 .case__title {
   font-family: var(--font-display);
   font-size: clamp(1.75rem, 3.5vw, 2.25rem);
@@ -1196,15 +1237,8 @@ a.press-card:focus-visible .press-card__arrow {
   padding-left: var(--space-4);
   border-left: 2px solid var(--color-accent-muted);
 }
-.case__condition-label {
-  font-family: var(--font-body);
-  font-size: var(--font-size-xs);
-  font-weight: 500;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--color-accent);
-  margin-bottom: var(--space-1);
-}
+/* Fully covered by .anno apart from the gap beneath it. */
+.case__condition-label { margin-bottom: var(--space-1); }
 .case__condition-text {
   font-family: var(--font-display);
   font-size: var(--font-size-xl);
@@ -1225,11 +1259,6 @@ a.press-card:focus-visible .press-card__arrow {
   margin-bottom: var(--space-1);
 }
 .workitem__meta {
-  font-family: var(--font-body);
-  font-size: var(--font-size-xs);
-  font-weight: 500;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
   color: var(--color-fg-muted);
   margin-bottom: var(--space-2);
 }
@@ -1262,6 +1291,7 @@ a.press-card:focus-visible .press-card__arrow {
 
 /* ========== UTILITY ========== */
 .text-center { text-align: center; }
+.text-left { text-align: left; }
 .mx-auto { margin-inline: auto; }
 .mt-2 { margin-top: var(--space-2); }
 .mt-3 { margin-top: var(--space-3); }
@@ -1277,6 +1307,3 @@ a.press-card:focus-visible .press-card__arrow {
 .mb-7 { margin-bottom: var(--space-7); }
 .mb-8 { margin-bottom: var(--space-8); }
 .pt-0 { padding-top: 0; }
-.max-w-narrow { max-width: var(--max-width-narrow); }
-.max-w-medium { max-width: var(--max-width-medium); }
-.max-w-prose { max-width: var(--max-width-prose); }

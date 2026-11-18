@@ -30,7 +30,7 @@
   <!-- ========== NAV ========== -->
   <nav class="nav" aria-label="Main">
     <div class="nav__inner">
-      <a class="nav__logo" href="index.html"><svg class="swing" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 21V3"/><path d="M5 3a18 18 0 0 1 16 18"/></svg><span>Pim Schachtschabel</span></a>
+      <a class="nav__logo" href="index.html"><svg class="thread--mark" viewBox="0 0 60 32" aria-hidden="true" focusable="false"><path pathLength="1" d="M2 26 C10 26 11 6 20 6 C29 6 29 26 38 26 C47 26 48 7 57 8" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg><span>Pim Schachtschabel</span></a>
       <ul class="nav__links">
         <li><a class="nav__link" href="speaking.html">Speaking</a></li>
         <li><a class="nav__link" href="work.html">Work</a></li>
@@ -59,6 +59,7 @@
 
     <!-- Hero -->
     <section class="hero band--grid">
+      <div class="thread" aria-hidden="true"><svg viewBox="0 0 100 900" preserveAspectRatio="none" focusable="false"><path pathLength="1" d="M58 0 C58 22 80 30 82 50 C84 68 64 76 56 64 C50 54 66 44 82 56 C96 66 92 104 88 134 C82 184 34 198 32 250 C30 302 88 316 86 370 C84 420 36 438 38 490 C40 546 94 558 88 612 C83 660 34 674 36 728 C38 782 90 792 86 848 C84 876 72 888 70 900"/></svg></div>
       <div class="hero__inner">
         <div class="hero__text">
           <p class="anno">Keynote Speaker &middot; Experience Designer &middot; Author</p>
@@ -77,6 +78,7 @@
 
     <!-- Thesis -->
     <section class="section bg-subtle band--grid">
+      <div class="thread" aria-hidden="true"><svg viewBox="0 0 100 900" preserveAspectRatio="none" focusable="false"><path pathLength="1" d="M58 0 C58 22 80 30 82 50 C84 68 64 76 56 64 C50 54 66 44 82 56 C96 66 92 104 88 134 C82 184 34 198 32 250 C30 302 88 316 86 370 C84 420 36 438 38 490 C40 546 94 558 88 612 C83 660 34 674 36 728 C38 782 90 792 86 848 C84 876 72 888 70 900"/></svg></div>
       <div class="container container--prose">
         <div class="reveal">
           <p class="anno mb-5">The thesis</p>
@@ -100,7 +102,7 @@
           </div>
         </div>
         <div class="reveal reveal--d2">
-          <p class="thesis__coda"><svg class="swing" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 21V3"/><path d="M5 3a18 18 0 0 1 16 18"/></svg><span>Same discipline. Different medium.</span></p>
+          <p class="thesis__coda"><span class="thread thread--inline" aria-hidden="true"><svg viewBox="0 0 90 50" focusable="false"><path pathLength="1" d="M2 40 C14 40 16 10 30 10 C44 10 44 40 58 40 C72 40 74 12 88 14"/></svg></span><span>Same discipline. Different medium.</span></p>
         </div>
       </div>
     </section>
@@ -118,7 +120,7 @@
       </ul>
     </section>
 
-    <div class="divider"><svg class="swing" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 21V3"/><path d="M5 3a18 18 0 0 1 16 18"/></svg></div>
+    <div class="divider"><span class="thread thread--inline" aria-hidden="true"><svg viewBox="0 0 90 50" focusable="false"><path pathLength="1" d="M2 40 C14 40 16 10 30 10 C44 10 44 40 58 40 C72 40 74 12 88 14"/></svg></span></div>
 
     <!-- Three Pillars -->
     <section class="section">
@@ -168,24 +170,21 @@
           <div class="reveal reveal--d4 principle-item"><p class="principle-item__stage">Letting Go</p><p class="principle-item__name">Flowing</p></div>
         </div>
         <div class="reveal reveal--d5">
-          <p class="text-caption text-on-emphasis-muted mb-5">These are verbs, not nouns. Things you do, not things you know.</p>
+          <p class="text-caption text-on-emphasis-muted mb-7">These are verbs, not nouns. Things you do, not things you know.</p>
+        </div>
+        <div class="reveal reveal--d5">
+          <figure class="endorsement text-left mx-auto mb-7" style="max-width:36rem;">
+            <blockquote class="endorsement__quote">In <em>Architecting Curiosity</em>, they understand that curiosity begins before the question, with the quality of attention we bring to the world. &hellip; They don't simply explain curiosity. They invite us to practice it.</blockquote>
+            <figcaption class="endorsement__by">
+              <p class="attribution__name">Barnet Bain</p>
+              <p class="attribution__role">Producer, <em>What Dreams May Come</em> &middot; Author, <em>How to Be a Friend</em></p>
+            </figcaption>
+          </figure>
           <a class="btn btn--ghost" href="book.html">Learn More in the Book &#8594;</a>
         </div>
       </div>
     </section>
 
-    <!-- Testimonial -->
-    <section class="section">
-      <div class="container text-center" style="max-width:43.75rem;">
-        <figure class="reveal">
-          <blockquote class="text-quote mb-4">"One of the best experience designers I know. His attention to beautiful detail, gift for creating intricate and engaging narratives, and designing inherently personal experiences is second to none."</blockquote>
-          <figcaption>
-            <p class="attribution__name">Andrew Lacanienta</p>
-            <p class="attribution__role">Professor, Department of Experience Industry Management<br>California Polytechnic State University, San Luis Obispo</p>
-          </figcaption>
-        </figure>
-      </div>
-    </section>
 
     <!-- Selected Work -->
     <section class="section pt-0" id="selected-work">
@@ -212,6 +211,15 @@
               <div class="work-card__body reveal"><h3 class="work-card__title">Wild Dining</h3><p class="text-body">The dinner ritual relocated to places it does not belong, including a moving train.</p></div>
             </article>
           </div>
+        </div>
+        <div class="container text-center mt-8" style="max-width:43.75rem;">
+          <figure class="reveal">
+          <blockquote class="text-quote mb-4">"One of the best experience designers I know. His attention to beautiful detail, gift for creating intricate and engaging narratives, and designing inherently personal experiences is second to none."</blockquote>
+          <figcaption>
+            <p class="attribution__name">Andrew Lacanienta</p>
+            <p class="attribution__role">Professor, Department of Experience Industry Management<br>California Polytechnic State University, San Luis Obispo</p>
+          </figcaption>
+        </figure>
         </div>
         <div class="reveal text-center mt-7">
           <a class="btn btn--secondary" href="work.html">See All Work &#8594;</a>
