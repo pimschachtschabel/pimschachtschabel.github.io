@@ -191,6 +191,14 @@ a:hover { color: var(--color-accent-hover); }
   letter-spacing: var(--track-display);
   color: var(--color-fg-default);
 }
+/* Two-part headline: second clause drops to its own line in accent.
+   Same device as .thesis__statement, so the signature line reads
+   identically wherever it appears. */
+.heading-display--split em {
+  font-style: normal;
+  display: block;
+  color: var(--color-accent);
+}
 
 
 .heading-section {
@@ -980,6 +988,8 @@ a.press-card:focus-visible .press-card__arrow {
 }
 .speaking-hero__text { max-width: 43.75rem; }
 .speaking-hero__text .heading-display { color: var(--color-fg-on-emphasis); }
+/* Over the stage photo the paper-ground accent would disappear. */
+.speaking-hero__text .heading-display--split em { color: var(--color-accent-on-dark); }
 
 /* ========== TALK CARDS ========== */
 .talk { border-top: 1px solid var(--color-border-default); padding: var(--space-7) 0; }
